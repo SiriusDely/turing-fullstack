@@ -20,11 +20,25 @@ const schema = require('../app/schema');
 
 Route.on('/').render('welcome');
 
-// Route.on('/admin').render('welcome').middleware(['auth:session']);
-Route.on('/admin').render('welcome');
+Route.get('/admin/login', 'SessionController.index')
+  .namespace('Admin')
+  .middleware('guest')
+  .as('admin.sessions.index');
+
+Route.post('/admin/login', 'SessionController.create')
+  .namespace('Admin')
+  .middleware('guest')
+  .as('admin.sessions.create');
+
+Route.group(() => {
+  // Binds '/users' to 'App/Controllers/Http/Admin/UserController'
+  // Route.resource('/users', 'UserController')
+  Route.resource('/admin/departments', 'DepartmentController');
+// }).namespace('Admin');
+}).namespace('Admin').middleware(['auth:session']);
 /*
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
+  return { greeting: 'Hello world in JSON' };
 });
 */
 Route.route('/graphql', ({ request, auth, response }) => {
