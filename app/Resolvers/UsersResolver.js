@@ -23,7 +23,7 @@ const UsersResolver = {
   Mutation: {
     // Handles user login
     async login(_, { email, password }, { auth }) {
-      const { token } = await auth.attempt(email, password);
+      const { token } = await auth.authenticator('jwt').attempt(email, password);
       return token;
     },
 
