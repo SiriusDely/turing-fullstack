@@ -20,22 +20,28 @@ const schema = require('../app/schema');
 
 Route.on('/').render('welcome');
 
-Route.get('/admin/login', 'SessionController.index')
+Route.get('/admin/login', 'SessionController.create')
   .namespace('Admin')
   .middleware('guest')
-  .as('admin.sessions.index');
+  .as('admin.login');
 
-Route.post('/admin/login', 'SessionController.create')
+Route.post('/admin/sessions/store', 'SessionController.store')
   .namespace('Admin')
   .middleware('guest')
-  .as('admin.sessions.create');
+  .as('admin.sessions.store');
 
 Route.group(() => {
   // Binds '/users' to 'App/Controllers/Http/Admin/UserController'
   // Route.resource('/users', 'UserController')
-  Route.resource('/admin/departments', 'DepartmentController');
-// }).namespace('Admin');
-}).namespace('Admin').middleware(['auth:session']);
+  Route.resource('departments', 'DepartmentController')
+    .validator(new Map([
+      [['departments.store'], ['StoreDepartment']],
+      [['departments.update'], ['StoreDepartment']]
+    ]));
+})
+  .prefix('admin')
+  .namespace('Admin');
+// }).namespace('Admin').middleware(['auth:session']);
 /*
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' };

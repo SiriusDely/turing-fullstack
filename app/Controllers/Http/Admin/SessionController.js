@@ -4,11 +4,11 @@ const { validateAll } = use('Validator');
 
 class SessionController {
 
-  async index({ request, response, view }) {
-    return view.render('admin.sessions.index');
+  async create({ view }) {
+    return view.render('admin.sessions.create');
   }
 
-  async create({ auth, session, request, response }) {
+  async store({ auth, session, request, response }) {
     const rules = {
       email: 'required|email',
       password: 'required'

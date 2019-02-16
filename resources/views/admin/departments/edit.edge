@@ -1,0 +1,62 @@
+@layout('admin/layout')
+
+@section('content')
+  <!--
+  <h1 class="title">
+    Hello World
+  </h1>
+  <p class="subtitle">
+    My first website with <strong>Bulma</strong>!
+  </p>
+  -->
+  <div class="columns is-mobile">
+    <div class="column is-three-fifths is-offset-one-fifth">
+      <h1 class="title">
+          @if(department)
+            Edit Department #{{ department.department_id }}
+          @else
+            Create New Department
+          @endif
+      </h1>
+      <form method="{{ department ? 'POST' : 'POST' }}"
+        action="{{ department ? (route('departments.update', { id: department.department_id }) + '?_method=PUT') : route('departments.store') }}">
+        {{ csrfField() }}
+        <div class="field">
+          @if(hasErrorFor('name'))
+            <span>{{ getErrorFor('name') }}</span>
+          @endif
+          <label class="label">Name</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Name" name="name"
+              value="{{ old('name') ? old('name') : department ? department.name : ''}}" />
+          </div>
+        </div>
+        <div class="field">
+          {{ elIf('<span>$self</span>', getErrorFor('description'), hasErrorFor('description')) }}
+          <label class="label">Description</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Description" name="description"
+              value="{{ old('description') ? old('description') : department ? department.description : ''}}" />
+          </div>
+        </div>
+				<br />
+        <div class="field">
+          <div class="control buttons">
+						<button class="button is-success is-fullwidth" type="submit">
+							<span class="icon is-small">
+								<i class="fas fa-check"></i>
+							</span>
+							<span>{{ department ? 'Update' : 'Create' }}</span>
+						</button>
+						<a class="button is-danger is-outlined is-fullwidth">
+							<span class="icon is-small">
+								<i class="fas fa-times"></i>
+							</span>
+							<span>Delete</span>
+						</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+@endsection

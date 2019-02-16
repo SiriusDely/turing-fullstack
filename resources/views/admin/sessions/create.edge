@@ -19,7 +19,7 @@
             <h1 class="title has-text-centered">
               Admin Login
             </h1>
-            <form action="{{ route('admin.sessions.create') }}" method="POST">
+            <form action="{{ route('admin.sessions.store') }}" method="POST">
               {{ csrfField() }}
               <div class="field">
                 @if(hasErrorFor('email'))
