@@ -18,6 +18,10 @@ class Department extends Model {
   static get updatedAtColumn () {
     return null;
   }
+
+  categories() {
+    return this.hasMany('App/Models/Category')
+  }
 }
 
 module.exports = Department;

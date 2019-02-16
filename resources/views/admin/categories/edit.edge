@@ -12,20 +12,20 @@
   <div class="columns is-mobile">
     <div class="column is-three-fifths is-offset-one-fifth">
       <h1 class="title">
-          @if(department)
-            Edit Department #{{ department.department_id }}
+          @if(category)
+            Edit Category #{{ category.category_id }}
           @else
-            Create New Department
+            Create New Category
           @endif
       </h1>
-      <form method="{{ department ? 'POST' : 'POST' }}"
-        action="{{ department ? (route('departments.update', { id: department.department_id }) + '?_method=PUT') : route('departments.store') }}">
+      <form method="{{ category ? 'POST' : 'POST' }}"
+        action="{{ category ? (route('categories.update', { id: category.category_id }) + '?_method=PUT') : route('categories.store') }}">
         {{ csrfField() }}
         <div class="field">
           <label class="label">Name</label>
           <div class="control">
             <input class="input" type="text" placeholder="Name" name="name"
-              value="{{ old('name') ? old('name') : department ? department.name : ''}}" />
+              value="{{ old('name') ? old('name') : category ? category.name : ''}}" />
           </div>
           @if(hasErrorFor('name'))
             <span>{{ getErrorFor('name') }}</span>
@@ -35,9 +35,22 @@
           <label class="label">Description</label>
           <div class="control">
             <textarea class="textarea" placeholder="Description" name="description"
-							>{{ old('description') ? old('description') : department ? department.description : ''}}</textarea>
+							>{{ old('description') ? old('description') : category ? category.description : ''}}</textarea>
           </div>
           {{ elIf('<span>$self</span>', getErrorFor('description'), hasErrorFor('description')) }}
+        </div>
+        <div class="field">
+          <label class="label">Department</label>
+          <div class="control select">
+            <select name="department_id">
+              @each(d in departments)
+                <option value="{{ d.department_id }}"
+                  {{ elIf('$self', 'selected', d.department_id === department.department_id ) }}
+                >{{ d.name }}</option>
+              @endeach
+            </select>
+          </div>
+          {{ elIf('<span>$self</span>', getErrorFor('department_id'), hasErrorFor('department_id')) }}
         </div>
 				<br />
         <div class="field">
@@ -46,9 +59,9 @@
 							<span class="icon is-small">
 								<i class="fas fa-check"></i>
 							</span>
-							<span>{{ department ? 'Update' : 'Create' }}</span>
+							<span>{{ category ? 'Update' : 'Create' }}</span>
 						</button>
-						@if(department)
+						@if(category)
 							<a class="button is-danger is-outlined is-fullwidth">
 								<span class="icon is-small">
 									<i class="fas fa-times"></i>

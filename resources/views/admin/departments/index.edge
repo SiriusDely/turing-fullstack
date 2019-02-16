@@ -24,7 +24,7 @@
               <td>{{ department.department_id }}</td>
               <td>{{ department.name }}</td>
               <td><a href={{ route('departments.edit', { id: department.department_id }) }}>Edit</a></td>
-              <td><a href={{ route('departments.edit', { id: department.department_id }) }}>Categories</a></td>
+              <td><a href={{ route('departments.categories.index', { departments_id: department.department_id }) }}>Categories</a></td>
             </tr>
           @endeach
         </tbody>

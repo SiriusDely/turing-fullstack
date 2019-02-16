@@ -31,12 +31,21 @@ Route.post('/admin/sessions/store', 'SessionController.store')
   .as('admin.sessions.store');
 
 Route.group(() => {
-  // Binds '/users' to 'App/Controllers/Http/Admin/UserController'
-  // Route.resource('/users', 'UserController')
   Route.resource('departments', 'DepartmentController')
+    .only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
     .validator(new Map([
       [['departments.store'], ['StoreDepartment']],
       [['departments.update'], ['StoreDepartment']]
+    ]));
+
+  Route.resource('departments.categories', 'CategoryController')
+    .only(['index']);
+
+  Route.resource('categories', 'CategoryController')
+    .only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+    .validator(new Map([
+      [['categories.store'], ['Category']],
+      [['categories.update'], ['Category']]
     ]));
 })
   .prefix('admin')

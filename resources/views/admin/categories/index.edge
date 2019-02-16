@@ -1,0 +1,44 @@
+@layout('admin/layout')
+
+@section('content')
+  <div class="columns is-mobile">
+    <div class="column is-three-fifths is-offset-one-fifth">
+      <h1 class="title">
+        @if(department)
+          Categories of <a href={{ route('departments.edit', { id: department.department_id }) }}>{{ department.name }}</a> Department
+        @else
+          List of Categories
+        @endif
+      </h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            @if(!department)
+              <th>Department</th>
+            @endif
+            <th colspan='2'>
+              <a href={{ route('categories.create') }}>
+                <i class="fas fa-plus is-info"></i> New
+              </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @each(category in categories)
+            <tr>
+              <td>{{ category.category_id }}</td>
+              <td>{{ category.name }}</td>
+              @if(!department)
+                <td><a href={{ route('departments.edit', { id: category.department.department_id }) }}>{{ category.department.name }}</a></td>
+              @endif
+              <td><a href={{ route('categories.edit', { id: category.category_id }) }}>Edit</a></td>
+              <td><a href={{ route('categories.products.index', { categories_id: category.category_id }) }}>Products</a></td>
+            </tr>
+          @endeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+@endsection
