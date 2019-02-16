@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /*
 |--------------------------------------------------------------------------
@@ -47,15 +47,23 @@ Route.group(() => {
       [['categories.store'], ['Category']],
       [['categories.update'], ['Category']]
     ]));
+
+  Route.resource('attributes', 'AttributeController')
+    .only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+    .validator(new Map([
+      [['attributes.store'], ['Attribute']],
+      [['attributes.update'], ['Attribute']]
+    ]));
+
+  Route.resource('attributes.values', 'AttributeValueController')
+    .only(['index']);
+
+  Route.resource('attribute-values', 'AttributeValueController')
+    .only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 })
   .prefix('admin')
   .namespace('Admin');
-// }).namespace('Admin').middleware(['auth:session']);
-/*
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' };
-});
-*/
+
 Route.route('/graphql', ({ request, auth, response }) => {
   return ApolloServer.graphql({ schema, context: { auth } }, request, response);
 }, ['GET', 'POST']);

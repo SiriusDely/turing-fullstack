@@ -1,15 +1,10 @@
 'use strict';
 
-class StoreDepartment {
+class Attribute {
   get rules () {
     return {
-      // validation rules
-      name: 'required|string:min:5'
+      name: 'required|string:min:4'
     };
-  }
-
-  get sanitizationRules () {
-    // sanitize data before validation
   }
 
   get validateAll() {
@@ -22,4 +17,4 @@ class StoreDepartment {
   }
 }
 
-module.exports = StoreDepartment;
+module.exports = Attribute;

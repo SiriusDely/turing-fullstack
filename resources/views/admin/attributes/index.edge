@@ -1,0 +1,34 @@
+@layout('admin/layout')
+
+@section('content')
+  <div class="columns is-mobile">
+    <div class="column is-three-fifths is-offset-one-fifth">
+      <h1 class="title">
+        List of Attributes
+      </h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th colspan='2'>
+              <a href={{ route('attributes.create') }}>
+                <i class="fas fa-plus is-info"></i> Create New
+              </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @each(attribute in attributes)
+            <tr>
+              <td>{{ attribute.attribute_id }}</td>
+              <td>{{ attribute.name }}</td>
+              <td><a href={{ route('attributes.edit', { id: attribute.attribute_id }) }}>Edit</a></td>
+              <td><a href={{ route('attributes.values.index', { attributes_id: attribute.attribute_id }) }}>Values</a></td>
+            </tr>
+          @endeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+@endsection

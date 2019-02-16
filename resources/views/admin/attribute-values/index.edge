@@ -1,0 +1,43 @@
+@layout('admin/layout')
+
+@section('content')
+  <div class="columns is-mobile">
+    <div class="column is-three-fifths is-offset-one-fifth">
+      <h1 class="title">
+        @if(attribute)
+          Values of <a href={{ route('attributes.edit', { id: attribute.attribute_id }) }}>{{ attribute.name }}</a> Attribute
+        @else
+          List of Values
+        @endif
+      </h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Value</th>
+            @if(!attribute)
+              <th>Attribute</th>
+            @endif
+            <th colspan='2'>
+              <a href={{ route('attribute-values.create') }}>
+                <i class="fas fa-plus is-info"></i> New
+              </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @each(value in values)
+            <tr>
+              <td>{{ value.attribute_value_id }}</td>
+              <td>{{ value.value }}</td>
+              @if(!attribute)
+                <td><a href={{ route('attributes.edit', { id: value.attribute.attribute_id }) }}>{{ value.attribute.name }}</a></td>
+              @endif
+              <td><a href={{ route('attribute-values.edit', { id: value.attribute_value_id }) }}>Edit</a></td>
+            </tr>
+          @endeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+@endsection

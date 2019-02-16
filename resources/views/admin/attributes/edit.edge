@@ -1,0 +1,56 @@
+@layout('admin/layout')
+
+@section('content')
+  <!--
+  <h1 class="title">
+    Hello World
+  </h1>
+  <p class="subtitle">
+    My first website with <strong>Bulma</strong>!
+  </p>
+  -->
+  <div class="columns is-mobile">
+    <div class="column is-three-fifths is-offset-one-fifth">
+      <h1 class="title">
+          @if(attribute)
+            Edit Attribute #{{ attribute.attribute_id }}
+          @else
+            Create New Attribute
+          @endif
+      </h1>
+      <form method="{{ attribute ? 'POST' : 'POST' }}"
+        action="{{ attribute ? (route('attributes.update', { id: attribute.attribute_id }) + '?_method=PUT') : route('attributes.store') }}">
+        {{ csrfField() }}
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Name" name="name"
+              value="{{ old('name') ? old('name') : attribute ? attribute.name : ''}}" />
+          </div>
+          @if(hasErrorFor('name'))
+            <span>{{ getErrorFor('name') }}</span>
+          @endif
+        </div>
+				<br />
+        <div class="field">
+          <div class="control buttons">
+						<button class="button is-success is-fullwidth" type="submit">
+							<span class="icon is-small">
+								<i class="fas fa-check"></i>
+							</span>
+							<span>{{ attribute ? 'Update' : 'Create' }}</span>
+						</button>
+						@if(attribute)
+							<a class="button is-danger is-outlined is-fullwidth">
+								<span class="icon is-small">
+									<i class="fas fa-times"></i>
+								</span>
+								<span>Delete</span>
+							</a>
+						@endif
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+@endsection
