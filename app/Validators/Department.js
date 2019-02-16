@@ -1,6 +1,6 @@
 'use strict';
 
-class StoreDepartment {
+class Department {
   get rules () {
     return {
       // validation rules
@@ -22,4 +22,4 @@ class StoreDepartment {
   }
 }
 
-module.exports = StoreDepartment;
+module.exports = Department;

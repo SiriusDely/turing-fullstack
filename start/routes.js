@@ -34,8 +34,8 @@ Route.group(() => {
   Route.resource('departments', 'DepartmentController')
     .only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
     .validator(new Map([
-      [['departments.store'], ['StoreDepartment']],
-      [['departments.update'], ['StoreDepartment']]
+      [['departments.store'], ['Department']],
+      [['departments.update'], ['Department']]
     ]));
 
   Route.resource('departments.categories', 'CategoryController')
@@ -60,6 +60,13 @@ Route.group(() => {
 
   Route.resource('attribute-values', 'AttributeValueController')
     .only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+
+  Route.resource('products', 'ProductController')
+    .only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+    .validator(new Map([
+      [['products.store'], ['Product']],
+      [['products.update'], ['Product']]
+    ]));
 })
   .prefix('admin')
   .namespace('Admin');

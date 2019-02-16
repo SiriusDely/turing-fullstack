@@ -1,0 +1,39 @@
+@layout('admin/layout')
+
+@section('content')
+  <div class="columns is-mobile">
+    <div class="column is-10 is-offset-1">
+      <h1 class="title">
+        List of Products
+      </h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Discounted Price</th>
+            <th colspan='2'>
+              <a href={{ route('products.create') }}>
+                <i class="fas fa-plus is-info"></i> New
+              </a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @each(product in products)
+            <tr>
+              <td>{{ product.product_id }}</td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.description }}</td>
+              <td>{{ product.price }}</td>
+              <td>{{ product.discounted_price }}</td>
+              <td><a href={{ route('products.edit', { id: product.product_id }) }}>Edit</a></td>
+            </tr>
+          @endeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+@endsection
