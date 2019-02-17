@@ -8,16 +8,32 @@ class Product extends Model {
     return 'product';
   }
 
-  static get primaryKey () {
+  static get primaryKey() {
     return 'product_id';
   }
 
-  static get createdAtColumn () {
+  static get createdAtColumn() {
     return null;
   }
 
-  static get updatedAtColumn () {
+  static get updatedAtColumn() {
     return null;
+  }
+
+	static get hidden() {
+    return ['product_id', 'discounted_price']
+  }
+
+  static get computed() {
+    return ['id', 'reducedPrice']
+  }
+
+  getId({ product_id }) {
+    return product_id;
+  }
+
+  getReducedPrice({ discounted_price }) {
+    return discounted_price;
   }
 }
 
