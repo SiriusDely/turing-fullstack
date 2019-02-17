@@ -20,6 +20,10 @@ const schema = require('../app/schema');
 
 Route.on('/').render('welcome');
 
+Route.get('/api', () => {
+  return { greeting: 'Hello world in JSON' };
+});
+
 Route.get('/admin/login', 'SessionController.create')
   .namespace('Admin')
   .middleware('guest')

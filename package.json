@@ -1,18 +1,21 @@
 {
-  "name": "adonis-fullstack-app",
-  "version": "4.1.0",
+  "name": "turing-fullstack",
+  "version": "0.0.1",
   "adonis-version": "4.1.0",
-  "description": "The fullstack application boilerplate for Adonisjs",
+  "description": "The fullstack application for Turing",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node ace test"
+    "test": "node ace test",
+    "build-front": "yarn --cwd front install && yarn --cwd front build",
+    "deploy-front": "cp -a front/build/. public/",
+    "heroku-postbuild-unused": "yarn build && yarn deploy"
   },
   "keywords": [
-    "adonisjs",
-    "adonis-app"
+    "turing",
+    "fullstack"
   ],
-  "author": "",
+  "author": "Sirius Dely <mail@siriusdely.com>",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
