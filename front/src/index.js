@@ -1,11 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'tachyons';
 import './index.css';
-import App from './App';
-// import * as serviceWorker from './serviceWorker';
-import { ApolloProvider } from 'react-apollo';
+
 import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
 import gql from 'graphql-tag';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
+
+import ProductsList from './components/ProductsList.js';
+import NotFound from './components/NotFound';
 
 const client = new ApolloClient();
 
@@ -15,20 +24,20 @@ client
       {
         allUsers {
           id,
-            username
+          username
         }
       }
     `
   })
   .then(({ data }) => console.log(data));
 
-ReactDOM.render(
+ReactDOM.render((
   <ApolloProvider client={ client }>
-    <App />
-  </ApolloProvider>,
-  document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-// serviceWorker.unregister();
+    <Router>
+      <Switch>
+        <Route path='/' exact component={ ProductsList } />
+        <Route component={ NotFound } />
+      </Switch>
+    </Router>
+  </ApolloProvider>
+  ), document.getElementById('root'));

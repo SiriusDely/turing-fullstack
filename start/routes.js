@@ -15,6 +15,9 @@
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route');
+const Helpers = use('Helpers')
+const { HttpException } = require('@adonisjs/generic-exceptions');
+
 const ApolloServer = use('ApolloServer');
 const schema = require('../app/schema');
 
@@ -81,4 +84,12 @@ Route.route('/graphql', ({ request, auth, response }) => {
 
 Route.get('/graphiql', ({ request, response }) => {
   return ApolloServer.graphiql({ endpointURL: '/graphql' }, request, response);
+});
+
+Route.any('*', ({ request, response }) => {
+  const format = request.accepts(['html']);
+  if (request.ajax() || request.pjax() || format !== 'html') {
+    throw new HttpException(`Route not found ${request.method()} ${request.url()}`, 404, 'E_ROUTE_NOT_FOUND');
+  }
+  response.attachment(Helpers.publicPath('public/index.html'))
 });
