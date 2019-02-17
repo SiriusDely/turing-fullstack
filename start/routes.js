@@ -87,9 +87,9 @@ Route.get('/graphiql', ({ request, response }) => {
 });
 
 Route.any('*', ({ request, response }) => {
-  const format = request.accepts(['html']);
-  if (request.ajax() || request.pjax() || format !== 'html') {
+  const acceptFormat = request.accepts(['html']);
+  if (request.ajax() || request.pjax() || acceptFormat !== 'html') {
     throw new HttpException(`Route not found ${request.method()} ${request.url()}`, 404, 'E_ROUTE_NOT_FOUND');
   }
-  response.attachment(Helpers.publicPath('public/index.html'))
+  response.download(Helpers.publicPath('index.html'))
 });

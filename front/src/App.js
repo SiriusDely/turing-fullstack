@@ -1,31 +1,48 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Dog from './Dog'
+
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+import gql from 'graphql-tag';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
+
+import ProductsList from './components/ProductsList.js';
+import NotFound from './components/NotFound';
+
+const client = new ApolloClient();
+
+fetch('/api').then(resp => {
+  console.log(resp.json());
+});
+
+client
+  .query({
+    query: gql`
+    {
+      allUsers {
+        id,
+        username
+      }
+    }
+    `
+  })
+  .then(({ data }) => console.log(data));
 
 class App extends Component {
   render() {
-    fetch('/api').then(resp => {
-      console.log(resp.json());
-    })
     return (
-      <div className="App">
-        <Dog />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <ApolloProvider client={ client }>
+        <Router>
+          <Switch>
+            <Route path='/' exact component={ ProductsList } />
+            <Route component={ NotFound } />
+          </Switch>
+        </Router>
+      </ApolloProvider>
     );
   }
 }
