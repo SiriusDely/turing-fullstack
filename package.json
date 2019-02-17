@@ -9,7 +9,7 @@
     "test": "node ace test",
     "build-front": "yarn --cwd front install && yarn --cwd front build",
     "deploy-front": "cp -a front/build/. public/",
-    "heroku-postbuild-unused": "yarn build && yarn deploy"
+    "heroku-postbuild": "yarn build && yarn deploy"
   },
   "keywords": [
     "turing",

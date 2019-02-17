@@ -85,6 +85,10 @@ tmp
 # The development sqlite file
 database/development.sqlite
 
+# Ignore public, as it is built on deploy
+# Place files for /public in /front/public
+/public
+
 # VSCode & Webstorm history directories
 .history
 .idea

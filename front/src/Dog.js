@@ -7,7 +7,7 @@ const GET_DOGS = gql`
 {
   allUsers {
     id,
-      username
+    username
   }
 }
 `;
