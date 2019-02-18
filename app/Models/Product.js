@@ -19,11 +19,11 @@ class Product extends Model {
   static get updatedAtColumn() {
     return null;
   }
-
+  /*
 	static get hidden() {
     return ['product_id', 'discounted_price']
   }
-
+  */
   static get computed() {
     return ['id', 'reducedPrice']
   }
