@@ -10,8 +10,9 @@ import {
   Switch
 } from 'react-router-dom';
 
-import ProductsList from './components/ProductsList.js';
+import Login from './components/Login';
 import NotFound from './components/NotFound';
+import ProductsList from './components/ProductsList.js';
 
 const client = new ApolloClient();
 

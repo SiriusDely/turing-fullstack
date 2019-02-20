@@ -9,27 +9,36 @@ const UsersQuery = gql`
     allProducts {
       id,
       name,
+      description,
       price,
-      reducedPrice
+      reducedPrice,
+      image,
+      thumbnail,
+      secondImage
     }
   }
 `;
 
 class ProductsList extends React.Component {
   render() {
-    if (this.props.data.loading) {
+    const { data } = this.props;
+    console.log('data:', this.props.data);
+
+    if (data.loading) {
       return (<div>Loading</div>)
+    } else if (data.error) {
+      return (<div>Error! ${ data.error.message }</div>)
     }
 
     return (
-      <div className='w-100 flex justify-center'>
-        <div className='w-100' style={{ maxWidth: 400 }}>
-          { this.props.data.allProducts.map(product => (
+      <section class="section">
+        <div class="columns is-multiline is-mobile">
+          { data.allProducts.map(product => (
             <ProductRow key={ product.id } product={ product }
-                        refresh={() => this.props.data.refetch() } />
+                        refresh={ () => data.refetch() } />
           )) }
         </div>
-      </div>
+      </section>
     );
   }
 }

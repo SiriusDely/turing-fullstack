@@ -13,10 +13,10 @@ const ProductsResolver = {
       const headers = request.headers();
       const authorization = request.header('authorization');
       const session = ctx.session;
-      */
       const authenticator = auth.authenticator('jwt');
       await authenticator.check();
       const user = await authenticator.getUser();
+      */
       const products = await Product.all();
       return products.toJSON();
     }

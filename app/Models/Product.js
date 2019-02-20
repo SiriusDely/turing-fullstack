@@ -25,7 +25,7 @@ class Product extends Model {
   }
   */
   static get computed() {
-    return ['id', 'reducedPrice']
+    return ['id', 'reducedPrice', 'secondImage']
   }
 
   getId({ product_id }) {
@@ -34,6 +34,10 @@ class Product extends Model {
 
   getReducedPrice({ discounted_price }) {
     return discounted_price;
+  }
+
+  getSecondImage({ image_2 }) {
+    return image_2;
   }
 }
 

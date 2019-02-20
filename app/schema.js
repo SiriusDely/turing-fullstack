@@ -21,8 +21,12 @@ const typeDefs = `
   type Product {
     id: Int!
     name: String!
+    description: String
     price: String!
     reducedPrice: String!
+    image: String
+    thumbnail: String
+    secondImage: String
   }
 
   type Query {
