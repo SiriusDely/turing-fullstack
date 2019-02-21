@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Login from './components/Login';
-import Navigation from './components/Navigation';
-import NotFound from './components/NotFound';
-import ProductsList from './components/ProductsList.js';
+import {
+  Login, Navigation, NotFound, ProductsList
+} from './components';
 
 class App extends Component {
   render() {

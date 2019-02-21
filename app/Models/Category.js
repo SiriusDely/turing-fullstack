@@ -20,6 +20,14 @@ class Category extends Model {
     return null;
   }
 
+  static get computed() {
+    return ['id']
+  }
+
+  getId({ category_id }) {
+    return category_id;
+  }
+
   department() {
     return this.belongsTo('App/Models/Department');
   }

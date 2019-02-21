@@ -79,7 +79,7 @@ class Login extends Component {
                 <div className="field">
                   <p className="control">
                     <Mutation mutation={ LoginMutation }
-                              variables={{ email, password }}
+                              variables={ { email, password } }
                               onCompleted={ data => this._confirm(data) }>
                       { mutation => (
                         <a onClick={ mutation } className="button is-success is-fullwidth">

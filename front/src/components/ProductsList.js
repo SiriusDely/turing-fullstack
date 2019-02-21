@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
+import Search from './Search';
 import ProductRow from './ProductRow';
 
 const UsersQuery = gql`
@@ -22,23 +23,29 @@ const UsersQuery = gql`
 class ProductsList extends React.Component {
   render() {
     const { data } = this.props;
-    // console.log('data:', this.props.data);
 
+    let component;
     if (data.loading) {
-      return (<div>Loading</div>)
+      component = <div>Loading</div>;
     } else if (data.error) {
-      return (<div>Error! ${ data.error.message }</div>)
-    }
-
-    return (
-      <section className="section">
+      component = <div>Error! ${ data.error.message }</div>;
+    } else {
+      component = (
         <div className="columns is-multiline is-mobile">
           { data.allProducts.map(product => (
             <ProductRow key={ product.id } product={ product }
                         refresh={ () => data.refetch() } />
           )) }
         </div>
-      </section>
+      );
+    }
+
+    return (
+      <div className='container'>
+        <br />
+        <Search />
+        { component }
+      </div>
     );
   }
 }
