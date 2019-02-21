@@ -3,36 +3,36 @@ import React, { Component } from 'react'
 class Login extends Component {
   render() {
     return (
-      <section class="section">
-        <div class="container">
-          <div class="columns is-mobile">
-            <div class="column is-three-fifths is-offset-one-fifth">
-              <h1 class="title has-text-centered">
-                Admin Login
+      <section className="section">
+        <div className="container">
+          <div className="columns is-mobile">
+            <div className="column is-three-fifths is-offset-one-fifth">
+              <h1 className="title has-text-centered">
+                Turing Login
               </h1>
               <form action="" method="POST">
-                <div class="field">
-                  <p class="control has-icons-left has-icons-right">
-                    <input name="email" class="input" type="email" placeholder="Email" required />
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-envelope"></i>
+                <div className="field">
+                  <p className="control has-icons-left has-icons-right">
+                    <input name="email" className="input" type="email" placeholder="Email" required />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-envelope"></i>
                     </span>
-                    <span class="icon is-small is-right">
-                      <i class="fas fa-check"></i>
-                    </span>
-                  </p>
-                </div>
-                <div class="field">
-                  <p class="control has-icons-left">
-                    <input name="password" class="input" type="password" placeholder="Password" required />
-                    <span class="icon is-small is-left">
-                      <i class="fas fa-lock"></i>
+                    <span className="icon is-small is-right">
+                      <i className="fas fa-check"></i>
                     </span>
                   </p>
                 </div>
-                <div class="field">
-                  <p class="control">
-                    <button class="button is-success is-fullwidth" type="submit">
+                <div className="field">
+                  <p className="control has-icons-left">
+                    <input name="password" className="input" type="password" placeholder="Password" required />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-lock"></i>
+                    </span>
+                  </p>
+                </div>
+                <div className="field">
+                  <p className="control">
+                    <button className="button is-success is-fullwidth" type="submit">
                       Login
                     </button>
                   </p>

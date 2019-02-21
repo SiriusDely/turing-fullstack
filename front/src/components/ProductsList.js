@@ -22,7 +22,7 @@ const UsersQuery = gql`
 class ProductsList extends React.Component {
   render() {
     const { data } = this.props;
-    console.log('data:', this.props.data);
+    // console.log('data:', this.props.data);
 
     if (data.loading) {
       return (<div>Loading</div>)
@@ -31,8 +31,8 @@ class ProductsList extends React.Component {
     }
 
     return (
-      <section class="section">
-        <div class="columns is-multiline is-mobile">
+      <section className="section">
+        <div className="columns is-multiline is-mobile">
           { data.allProducts.map(product => (
             <ProductRow key={ product.id } product={ product }
                         refresh={ () => data.refetch() } />

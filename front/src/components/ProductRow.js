@@ -3,29 +3,29 @@ import React from 'react';
 class ProductRow extends React.Component {
   render() {
     const { name, description, price, reducedPrice, thumbnail, image } = this.props.product;
-    console.log('product: ', this.props.product);
+    // console.log('product: ', this.props.product);
     return (
-      <div class="column is-one-quarter">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-1by1">
+      <div className="column is-one-quarter">
+        <div className="card">
+          <div className="card-image">
+            <figure className="image is-1by1">
               <img src={ `/images/products/${image}` } alt={ image } />
             </figure>
           </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
+          <div className="card-content">
+            <div className="media">
+              <div className="media-left">
+                <figure className="image is-48x48">
                   <img src={ `/images/products/${thumbnail}` } alt={ thumbnail } />
                 </figure>
               </div>
-              <div class="media-content">
-                <p class="title is-4">{ name }</p>
-                <p class="subtitle is-6">${ price }</p>
+              <div className="media-content">
+                <p className="title is-4">{ name }</p>
+                <p className="subtitle is-6">${ price }</p>
               </div>
             </div>
 
-            <div class="content">
+            <div className="content">
               { description }
             </div>
           </div>
