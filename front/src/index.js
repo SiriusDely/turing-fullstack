@@ -9,6 +9,7 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import 'bulma/css/bulma.css';
+import '@fortawesome/fontawesome-free/js/all.js';
 import './index.css';
 
 import App from './App';
