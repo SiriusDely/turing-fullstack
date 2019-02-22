@@ -4,21 +4,29 @@ import CategoriesSelect from './CategoriesSelect';
 import DepartmentsSelect from './DepartmentsSelect';
 
 class Search extends Component {
+  state = { departmentId: 0 };
+
+  _handleDepartmentsOnSelect = departmentId => {
+    this.setState({ departmentId: parseInt(departmentId) });
+  }
+
   render() {
+    const { departmentId } = this.state;
+
     return (
       <div className="field">
         <div className="field-body">
           <div className="field">
             <div className="control">
               <div className="select is-fullwidth">
-                <DepartmentsSelect />
+                <DepartmentsSelect onSelect={ this._handleDepartmentsOnSelect } />
               </div>
             </div>
           </div>
           <div className="field">
             <div className="control">
               <div className="select is-fullwidth">
-                <CategoriesSelect departmentId={ null }/>
+                <CategoriesSelect departmentId={ departmentId } />
               </div>
             </div>
           </div>

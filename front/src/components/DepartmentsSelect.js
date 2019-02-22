@@ -1,6 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import { Query } from 'react-apollo';
 
 const DepartmentsQuery = gql`
   {
@@ -11,15 +11,22 @@ const DepartmentsQuery = gql`
   }
 `;
 
-const DepartmentsSelect = ({ data }) => (
-  <select>
-    <option>Departments</option>
-    { data.departments && data.departments.map(department => (
-      <option key={ department.id } value={ department.id }>
-        { department.name }
-      </option>
-    )) }
-  </select>
+// const DepartmentsSelect = ({ data, onSelect }) => (
+const DepartmentsSelect = ({ onSelect }) => (
+  <Query query={ DepartmentsQuery }>
+    { ({ data }) => (
+      <select onChange={ e => {
+          onSelect(e.target.value);
+      } }>
+        <option value={ 0 }>All Departments</option>
+        { data && data.departments && data.departments.map(department => (
+          <option key={ department.id } value={ department.id }>
+            { department.name }
+          </option>
+        )) }
+      </select>
+    )}
+  </Query>
 );
 
-export default graphql(DepartmentsQuery)(DepartmentsSelect);
+export default DepartmentsSelect;

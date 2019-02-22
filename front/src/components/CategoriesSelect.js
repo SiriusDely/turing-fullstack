@@ -13,18 +13,16 @@ const CategoriesQuery = gql`
 
 const CategoriesSelect = ({ departmentId }) => (
   <Query query={ CategoriesQuery } variables={ { departmentId } }>
-    { ({ data }) => {
-        return (
-          <select>
-            <option>Categories</option>
-            { data.categories && data.categories.map(category => (
-              <option key={ category.id } value={ category.id }>
-                { category.name }
-              </option>
-            )) }
-          </select>
-        );
-    } }
+    { ({ data }) => (
+      <select>
+        <option value={ 0 }>All Categories</option>
+        { data && data.categories && data.categories.map(category => (
+          <option key={ category.id } value={ category.id }>
+            { category.name }
+          </option>
+        )) }
+      </select>
+    ) }
   </Query>
 );
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
+import CategoriesDropdown from './CategoriesDropdown';
+import DepartmentsDropdown from './DepartmentsDropdown';
 import { AUTH_TOKEN } from '../constants';
 
 const Navigation = (props) => {
@@ -20,10 +22,8 @@ const Navigation = (props) => {
       </div>
       <div className="navbar-menu">
         <div className="navbar-start">
-          <NavLink className="navbar-item" to="/departments"
-                   activeClassName="is-active">Departments</NavLink>
-          <NavLink className="navbar-item" to="/categories"
-                   activeClassName="is-active">Categories</NavLink>
+          <DepartmentsDropdown />
+          <CategoriesDropdown />
         </div>
         <div className="navbar-end">
           <div className="navbar-item">

@@ -23,11 +23,13 @@ const typeDefs = `
   type Department {
     id: Int!
     name: String!
+    categories: [Category]
   }
 
   type Category {
     id: Int!
     name: String!
+    department: Department
   }
 
   type Product {

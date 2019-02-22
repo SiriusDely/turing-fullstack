@@ -17,7 +17,7 @@ const ProductsResolver = {
       await authenticator.check();
       const user = await authenticator.getUser();
       */
-      const products = await Product.all();
+      const products = await Product.query().orderBy('product_id', 'desc').fetch();
       return products.toJSON();
     }
   }

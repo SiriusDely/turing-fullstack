@@ -1,6 +1,6 @@
 'use strict';
 
-const slugify = require('slugify');
+// const slugify = require('slugify');
 
 const User = use('App/Models/User');
 const UsersRepo = make('App/Repositories/UsersRepository');
