@@ -23,14 +23,16 @@ const ProductsResolver = {
       return products.toJSON();
     },
 
-    async products(_, args) {
-      let { departmentId, categoryId, keyword } = args;
+    async products(_, { departmentId, categoryId, keyword, page, perPage }) {
+      console.log(departmentId + ' ' + categoryId + ' ' + keyword + ' ' + page + ' ' + perPage);
+      page = page ? page : 1;
+      perPage = perPage ? perPage : 12;
 
       let products;
-      if (categoryId) {
+      if (categoryId && !isNaN(categoryId) && categoryId > 0) {
         const category = await Category.find(categoryId);
         products = category.products();
-      } else if (departmentId) {
+      } else if (departmentId && !isNaN(departmentId) && departmentId > 0) {
         const categoriesIds = await Category.query()
               .where('department_id', departmentId).pluck('category_id');
 
@@ -50,7 +52,7 @@ const ProductsResolver = {
           'product.thumbnail'
         ]).innerJoin('product_category', function() {
           this.on('product.product_id', 'product_category.product_id');
-        }).whereRaw(whereRaw);
+        }).whereRaw(whereRaw).paginate(page, perPage);
 
         return products;
       } else {
@@ -61,7 +63,7 @@ const ProductsResolver = {
         products = products.whereRaw(`LOWER(name) LIKE LOWER('%${keyword}%')`);
       }
 
-      products = await products.orderBy('product_id', 'desc').fetch();
+      products = await products.orderBy('product_id', 'desc').paginate(page, perPage);
       return products.toJSON();
     }
   }

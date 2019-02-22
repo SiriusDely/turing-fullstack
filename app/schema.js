@@ -43,13 +43,21 @@ const typeDefs = `
     secondImage: String
   }
 
+  type Products {
+    total: Int,
+    perPage: Int,
+    lastPage: Int,
+    page: Int,
+    data: [Product]
+  }
+
   type Query {
     allProducts: [Product]
     allUsers: [User]
     categories(departmentId: ID): [Category]
     departments: [Department]
     fetchUser(id: Int!): User
-    products(departmentId: ID, categoryId: ID, keyword: String): [Product]
+    products(departmentId: ID, categoryId: ID, keyword: String, page: Int): Products
   }
 
   type Mutation {

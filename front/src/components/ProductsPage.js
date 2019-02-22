@@ -1,7 +1,7 @@
 import React from 'react';
 
+import ProductsContainer from './ProductsContainer';
 import Search from './Search';
-import ProductsList from './ProductsList';
 
 class ProductsPage extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class ProductsPage extends React.Component {
       <div className='container'>
         <br />
         <Search onChange={ this._handleSearchOnChange } />
-        <ProductsList keyword={ keyword }
+        <ProductsContainer keyword={ keyword }
                       departmentId={ departmentId } categoryId={ categoryId } />
       </div>
     );
