@@ -4,7 +4,7 @@ import { Query } from 'react-apollo';
 import { NavLink } from 'react-router-dom';
 
 const CategoriesQuery = gql`
-  query categories($departmentId: Int) {
+  query categories($departmentId: ID) {
     categories(departmentId: $departmentId) {
       id,
       name

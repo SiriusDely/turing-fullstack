@@ -15,25 +15,25 @@ const resolvers = _.merge(
 // Define our schema using the GraphQL schema language
 const typeDefs = `
   type User {
-    id: Int!
+    id: ID!
     username: String!
     email: String!
   }
 
   type Department {
-    id: Int!
+    id: ID!
     name: String!
     categories: [Category]
   }
 
   type Category {
-    id: Int!
+    id: ID!
     name: String!
     department: Department
   }
 
   type Product {
-    id: Int!
+    id: ID!
     name: String!
     description: String
     price: Float!
@@ -46,10 +46,10 @@ const typeDefs = `
   type Query {
     allProducts: [Product]
     allUsers: [User]
-    categories(departmentId: Int): [Category]
+    categories(departmentId: ID): [Category]
     departments: [Department]
     fetchUser(id: Int!): User
-    products(departmentId: Int, categoryId: Int, keyword: String): [Product]
+    products(departmentId: ID, categoryId: ID, keyword: String): [Product]
   }
 
   type Mutation {

@@ -5,7 +5,7 @@ import { Query } from 'react-apollo';
 import ProductRow from './ProductRow';
 
 const ProductsQuery = gql`
-  query products($departmentId: Int, $categoryId: Int, $keyword: String){
+  query products($departmentId: ID, $categoryId: ID, $keyword: String){
     products(departmentId: $departmentId, categoryId: $categoryId, keyword: $keyword) {
       id,
       name,

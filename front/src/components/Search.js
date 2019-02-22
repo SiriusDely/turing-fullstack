@@ -7,14 +7,14 @@ class Search extends Component {
   state = { keyword: '' };
 
   _handleDepartmentsOnSelect = _departmentId => {
-    const departmentId = parseInt(_departmentId);
+    const departmentId = _departmentId;
     this.setState({ departmentId });
     const { categoryId, keyword } = this.state;
     this.props.onChange({ departmentId, categoryId, keyword });
   }
 
   _handleCategoriesOnSelect = _categoryId => {
-    const categoryId = parseInt(_categoryId);
+    const categoryId = _categoryId;
     const { departmentId, keyword } = this.state;
     this.setState({ categoryId: parseInt(categoryId) });
     this.props.onChange({ departmentId, categoryId, keyword });

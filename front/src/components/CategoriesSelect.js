@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
 const CategoriesQuery = gql`
-  query categories($departmentId: Int) {
+  query categories($departmentId: ID) {
     categories(departmentId: $departmentId) {
       id,
       name
