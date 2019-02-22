@@ -6,8 +6,8 @@ import Pagination from './Pagination';
 import ProductsList from './ProductsList';
 
 const ProductsQuery = gql`
-  query products($departmentId: ID, $categoryId: ID, $keyword: String){
-    products(departmentId: $departmentId, categoryId: $categoryId, keyword: $keyword) {
+  query products($departmentId: ID, $categoryId: ID, $keyword: String, $page: Int){
+    products(departmentId: $departmentId, categoryId: $categoryId, keyword: $keyword, page: $page) {
       data {
         id,
         name,
@@ -27,12 +27,20 @@ const ProductsQuery = gql`
 `;
 
 class ProductsContainer extends React.Component {
+  state = { pageVar: 1 };
+
+  _handlePaginationClick = pageVar => {
+    const page = parseInt(pageVar);
+    if (page > 0) { this.setState({ pageVar: page }); }
+  }
+
   render() {
     const { departmentId, categoryId, keyword } = this.props;
+    const { pageVar } = this.state;
 
     return (
       <Query query={ ProductsQuery } variables={ {
-          departmentId, categoryId, keyword
+          departmentId, categoryId, keyword, page: pageVar
       } }>
       { ({ data }) => {
         const products = data.products;
@@ -46,14 +54,14 @@ class ProductsContainer extends React.Component {
         } else {
           component = (
             <>
-              <Pagination page={ page } lastPage={ lastPage } />
+              <Pagination page={ page } lastPage={ lastPage } onClick={ this._handlePaginationClick } />
               <br />
               <div className="columns is-multiline is-mobile">
                 { products && data.products.data &&
                   <ProductsList products={ data.products.data } />
                 }
               </div>
-              <Pagination page={ page } lastPage={ lastPage } />
+              <Pagination page={ page } lastPage={ lastPage } onClick={ this._handlePaginationClick } />
             </>
           );
         }

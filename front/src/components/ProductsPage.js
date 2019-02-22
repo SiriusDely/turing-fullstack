@@ -27,4 +27,4 @@ class ProductsPage extends React.Component {
   }
 }
 
-export default (ProductsPage);
+export default ProductsPage;

@@ -1,6 +1,11 @@
 import React from 'react';
 
-const Pagination = ({ page, lastPage }) => {
+const Pagination = ({ page, lastPage, onClick }) => {
+  if (page > lastPage) {
+    onClick(1);
+    return null;
+  }
+
   let paginations;
 
   if (true) {
@@ -11,7 +16,7 @@ const Pagination = ({ page, lastPage }) => {
                               aria-current aria-label={ `Goto page ${p}` }>{ p }</a>
                          </li>) :
                          (<li key={ p }>
-                           <a className='pagination-link'
+                           <a className='pagination-link' onClick={ e => onClick(e.target.innerText) }
                               aria-label={ `Goto page ${p}` }>{ p }</a>
                          </li>)
                        ));
@@ -19,8 +24,10 @@ const Pagination = ({ page, lastPage }) => {
 
   return (
     <nav className="pagination" role="navigation" aria-label="pagination">
-      <a className="pagination-previous">Previous</a>
-      <a className="pagination-next">Next page</a>
+      <a className="pagination-previous" onClick={ e => onClick(page - 1) }>Previous</a>
+      <a className="pagination-next" onClick={ e => {
+          if (page < lastPage) { onClick(page + 1); }
+      } }>Next page</a>
       <ul className="pagination-list">
         { paginations }
       </ul>
