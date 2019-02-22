@@ -1,13 +1,12 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import { Query } from 'react-apollo';
 
-import Search from './Search';
 import ProductRow from './ProductRow';
 
-const UsersQuery = gql`
-  {
-    allProducts {
+const ProductsQuery = gql`
+  query products($departmentId: Int, $categoryId: Int, $keyword: String){
+    products(departmentId: $departmentId, categoryId: $categoryId, keyword: $keyword) {
       id,
       name,
       description,
@@ -22,32 +21,35 @@ const UsersQuery = gql`
 
 class ProductsList extends React.Component {
   render() {
-    const { data } = this.props;
-
-    let component;
-    if (data.loading) {
-      component = <div>Loading</div>;
-    } else if (data.error) {
-      component = <div>Error! ${ data.error.message }</div>;
-    } else {
-      component = (
-        <div className="columns is-multiline is-mobile">
-          { data.allProducts.map(product => (
-            <ProductRow key={ product.id } product={ product }
-                        refresh={ () => data.refetch() } />
-          )) }
-        </div>
-      );
-    }
+    const { departmentId, categoryId, keyword } = this.props;
 
     return (
-      <div className='container'>
-        <br />
-        <Search />
-        { component }
-      </div>
+      <Query query={ ProductsQuery } variables={ {
+        departmentId, categoryId, keyword
+      } }>
+      { ({ data }) => {
+        let component;
+
+        if (data && data.loading) {
+          component = <div>Loading</div>;
+        } else if (data && data.error) {
+          component = <div>Error! ${ data.error.message }</div>;
+        } else {
+          component = (
+            <div className="columns is-multiline is-mobile">
+              { data && data.products && data.products.map(product => (
+                <ProductRow key={ product.id } product={ product }
+                            refresh={ () => data.refetch() } />
+              )) }
+            </div>
+          );
+        }
+
+        return component;
+      } }
+      </Query>
     );
   }
 }
 
-export default graphql(UsersQuery)(ProductsList);
+export default ProductsList;

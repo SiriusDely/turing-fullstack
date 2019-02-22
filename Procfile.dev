@@ -1,2 +1,2 @@
 web: PORT=3000 yarn --cwd front start
-api: PORT=3333 adonis serve --dev
+api: PORT=3333 adonis serve --dev --ignore="front"

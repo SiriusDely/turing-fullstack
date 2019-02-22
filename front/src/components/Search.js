@@ -4,14 +4,31 @@ import CategoriesSelect from './CategoriesSelect';
 import DepartmentsSelect from './DepartmentsSelect';
 
 class Search extends Component {
-  state = { departmentId: 0 };
+  state = { keyword: '' };
 
-  _handleDepartmentsOnSelect = departmentId => {
-    this.setState({ departmentId: parseInt(departmentId) });
+  _handleDepartmentsOnSelect = _departmentId => {
+    const departmentId = parseInt(_departmentId);
+    this.setState({ departmentId });
+    const { categoryId, keyword } = this.state;
+    this.props.onChange({ departmentId, categoryId, keyword });
+  }
+
+  _handleCategoriesOnSelect = _categoryId => {
+    const categoryId = parseInt(_categoryId);
+    const { departmentId, keyword } = this.state;
+    this.setState({ categoryId: parseInt(categoryId) });
+    this.props.onChange({ departmentId, categoryId, keyword });
+  }
+
+  _handleKeywordOnChange = e => {
+    const keyword = e.target.value;
+    const { departmentId, categoryId } = this.state;
+    this.setState({ keyword });
+    this.props.onChange({ departmentId, categoryId, keyword });
   }
 
   render() {
-    const { departmentId } = this.state;
+    const { departmentId, keyword } = this.state;
 
     return (
       <div className="field">
@@ -26,13 +43,16 @@ class Search extends Component {
           <div className="field">
             <div className="control">
               <div className="select is-fullwidth">
-                <CategoriesSelect departmentId={ departmentId } />
+                <CategoriesSelect departmentId={ departmentId }
+                                  onSelect={ this._handleCategoriesOnSelect }/>
               </div>
             </div>
           </div>
           <div className="field has-addons">
             <div className="control is-expanded">
-              <input className="input is-fullwidth" type="text" placeholder="Search products" />
+              <input className="input is-fullwidth" type="text"
+                     value={ keyword } placeholder="Search products"
+              onChange={ this._handleKeywordOnChange }/>
             </div>
             <div className="control">
               <button className="button is-info">

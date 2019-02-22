@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import {
-  Login, Navigation, NotFound, ProductsList
+  Login, Navigation, NotFound, ProductsPage
 } from './components';
 
 class App extends Component {
@@ -11,10 +11,10 @@ class App extends Component {
       <Fragment>
         <Navigation />
         <Switch>
-          <Route path='/' exact component={ ProductsList } />
+          <Route path='/' exact component={ ProductsPage } />
           <Route path='/login' exact component={ Login } />
-          <Route path='/departments' exact component={ ProductsList } />
-          <Route path='/categories' exact component={ ProductsList } />
+          <Route path='/departments' exact component={ ProductsPage } />
+          <Route path='/categories' exact component={ ProductsPage } />
           <Route component={ NotFound } />
         </Switch>
       </Fragment>

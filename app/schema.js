@@ -36,8 +36,8 @@ const typeDefs = `
     id: Int!
     name: String!
     description: String
-    price: String!
-    reducedPrice: String!
+    price: Float!
+    reducedPrice: Float!
     image: String
     thumbnail: String
     secondImage: String
@@ -49,7 +49,7 @@ const typeDefs = `
     categories(departmentId: Int): [Category]
     departments: [Department]
     fetchUser(id: Int!): User
-    products(departmentId: Int, categoryId: Int): [Product]
+    products(departmentId: Int, categoryId: Int, keyword: String): [Product]
   }
 
   type Mutation {

@@ -31,6 +31,16 @@ class Category extends Model {
   department() {
     return this.belongsTo('App/Models/Department');
   }
+
+  products() {
+    return this.belongsToMany(
+      'App/Models/Product',
+      'category_id',
+      'product_id',
+      'category_id',
+      'product_id'
+    ).pivotTable('product_category');
+  }
 }
 
 module.exports = Category;

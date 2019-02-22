@@ -11,10 +11,12 @@ const CategoriesQuery = gql`
   }
 `;
 
-const CategoriesSelect = ({ departmentId }) => (
+const CategoriesSelect = ({ departmentId, onSelect }) => (
   <Query query={ CategoriesQuery } variables={ { departmentId } }>
     { ({ data }) => (
-      <select>
+      <select onChange={ e => {
+        onSelect(e.target.value);
+      } }>
         <option value={ 0 }>All Categories</option>
         { data && data.categories && data.categories.map(category => (
           <option key={ category.id } value={ category.id }>
