@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
+import { withRouter } from 'react-router';
 
 import Pagination from './Pagination';
 import ProductsList from './ProductsList';
@@ -27,20 +28,33 @@ const ProductsQuery = gql`
 `;
 
 class ProductsContainer extends React.Component {
+
   state = { pageVar: 1 };
 
   _handlePaginationClick = pageVar => {
     const page = parseInt(pageVar);
     if (page > 0) { this.setState({ pageVar: page }); }
+    const { departmentId, categoryId, keyword, history } = this.props;
+    let path = '/';
+    if (categoryId) { path = `/categories/${categoryId}`; }
+    else if (departmentId) { path = `/departments/${departmentId}`; }
+
+    if (page && page > 0 && keyword && keyword.trim().length > 0) {
+      path += `?keyword=${keyword}&page=${page}`;
+    } else if (page && page > 0 && !(keyword && keyword.trim().length > 0)) {
+      path += `?page=${page}`;
+    } else if (!(page && page > 0) && (keyword && keyword.trim().length > 0)) { 
+      path += `?keyword=${keyword}`;
+    }
+    history.push(path);
   }
 
   render() {
-    const { departmentId, categoryId, keyword } = this.props;
-    const { pageVar } = this.state;
+    const { departmentId, categoryId, keyword, page } = this.props;
 
     return (
       <Query query={ ProductsQuery } variables={ {
-          departmentId, categoryId, keyword, page: pageVar
+          departmentId, categoryId, keyword, page
       } }>
       { ({ data }) => {
         const products = data.products;
@@ -73,4 +87,4 @@ class ProductsContainer extends React.Component {
   }
 }
 
-export default ProductsContainer;
+export default withRouter(ProductsContainer);

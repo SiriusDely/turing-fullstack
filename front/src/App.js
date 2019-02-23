@@ -13,8 +13,8 @@ class App extends Component {
         <Switch>
           <Route path='/' exact component={ ProductsPage } />
           <Route path='/login' exact component={ Login } />
-          <Route path='/departments' exact component={ ProductsPage } />
-          <Route path='/categories' exact component={ ProductsPage } />
+          <Route path='/departments/:departmentId?' component={ ProductsPage } />
+          <Route path='/categories/:categoryId?' component={ ProductsPage } />
           <Route component={ NotFound } />
         </Switch>
       </Fragment>

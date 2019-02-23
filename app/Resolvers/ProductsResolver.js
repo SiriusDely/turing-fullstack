@@ -39,7 +39,7 @@ const ProductsResolver = {
         if (categoriesIds.length == 0) { return []; }
 
         let whereRaw = `"product_category"."category_id" IN (${categoriesIds.join(',')})`;
-        if (keyword && keyword.length.trim().length) { whereRaw += ` AND LOWER(name) LIKE LOWER('%${keyword}%')`; }
+        if (keyword && keyword.trim().length) { whereRaw += ` AND LOWER(name) LIKE LOWER('%${keyword}%')`; }
 
         products = await Database.table('product').select([
           'product.product_id as id',

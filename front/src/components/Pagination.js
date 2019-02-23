@@ -1,11 +1,6 @@
 import React from 'react';
 
 const Pagination = ({ page, lastPage, onClick }) => {
-  if (page > lastPage) {
-    onClick(1);
-    return null;
-  }
-
   let paginations;
 
   if (true) {
@@ -27,7 +22,7 @@ const Pagination = ({ page, lastPage, onClick }) => {
       <a className="pagination-previous" onClick={ e => onClick(page - 1) }>Previous</a>
       <a className="pagination-next" onClick={ e => {
           if (page < lastPage) { onClick(page + 1); }
-      } }>Next page</a>
+      } }>Next Page</a>
       <ul className="pagination-list">
         { paginations }
       </ul>

@@ -3,7 +3,16 @@ import React from 'react';
 class ProductRow extends React.Component {
   render() {
     const { name, description, price, reducedPrice, thumbnail, image } = this.props.product;
-    // console.log('product: ', this.props.product);
+
+    let priceComponent;
+    if (reducedPrice && reducedPrice > 0) {
+      priceComponent = <p className="subtitle is-6">
+        <span style={ { textDecoration: 'line-through' } }>${ price }</span> ${ (price - reducedPrice).toFixed(2) }
+      </p>
+    } else {
+      priceComponent = <p className="subtitle is-6">${ price }</p>
+    }
+
     return (
       <div className="column is-one-quarter">
         <div className="card">
@@ -21,7 +30,7 @@ class ProductRow extends React.Component {
               </div>
               <div className="media-content">
                 <p className="title is-4">{ name }</p>
-                <p className="subtitle is-6">${ price }</p>
+                { priceComponent }
               </div>
             </div>
 

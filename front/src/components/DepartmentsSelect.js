@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
+import { withRouter } from 'react-router';
 
 const DepartmentsQuery = gql`
   {
@@ -11,22 +12,44 @@ const DepartmentsQuery = gql`
   }
 `;
 
-// const DepartmentsSelect = ({ data, onSelect }) => (
-const DepartmentsSelect = ({ onSelect }) => (
-  <Query query={ DepartmentsQuery }>
-    { ({ data }) => (
-      <select onChange={ e => {
-          onSelect(e.target.value);
-      } }>
-        <option value={ 0 }>All Departments</option>
-        { data && data.departments && data.departments.map(department => (
-          <option key={ department.id } value={ department.id }>
-            { department.name }
-          </option>
-        )) }
-      </select>
-    )}
-  </Query>
-);
+class DepartmentsSelect extends React.Component {
+  constructor(props) {
+    super(props);
+    const { departmentId } = props;
+    this.state = { departmentId };
+  }
 
-export default DepartmentsSelect;
+  _handleSelectOptionsOnChange = e => {
+    const _departmentId = parseInt(e.target.value);
+    const departmentId = _departmentId && _departmentId > 0 ? _departmentId : '';
+    this.setState = { departmentId };
+    const { history } = this.props;
+    history.push(`/departments/${departmentId}`);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { departmentId } = nextProps;
+    this.state = { departmentId };
+  }
+
+  render() {
+    const { departmentId } = this.state;
+    return (
+      <Query query={ DepartmentsQuery }>
+        { ({ data }) => (
+          <select defaultValue={ departmentId && !isNaN(departmentId) ? departmentId : 0 } onChange={ this._handleSelectOptionsOnChange }>
+            <option value={ 0 }>All Departments</option>
+            { data && data.departments && data.departments.map(department => (
+              <option key={ department.id } value={ department.id }
+                selected={ department.id === departmentId }>
+                { department.name }
+              </option>
+            )) }
+          </select>
+        )}
+      </Query>
+    );
+  }
+}
+
+export default withRouter(DepartmentsSelect);
