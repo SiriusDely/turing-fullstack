@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
-import { AUTH_TOKEN } from '../constants';
+import { AUTH_TOKEN, EMAIL_REGEX } from '../constants';
+
+const RegisterMutation = gql`
+  mutation register($name: String!, $email: String!, $password: String!) {
+    register(username: $name, email: $email, password: $password)
+  }
+`;
 
 const LoginMutation = gql`
   mutation login($email: String!, $password: String!) {
@@ -12,14 +18,49 @@ const LoginMutation = gql`
 
 class Login extends Component {
   state = {
-    login: true, // switch between Login and Register
     email: '',
-    password: '',
+    emailValid: false,
+    error: '',
+    formValid: false,
+    login: true, // switch between Login and Register
     name: '',
+    nameValid: false,
+    password: '',
+    passwordValid: false
   }
 
-  _confirm = async (data) => {
-    console.log('Login._confirm.data:', data);
+
+  _handleInputsChange = e => {
+    const { name, value } = e.target;
+    let { emailValid, login, nameValid,
+          passwordValid } = this.state;
+    switch (name) {
+      case 'name':
+        nameValid = value.trim().length > 2;
+        break;
+      case 'email':
+        emailValid = EMAIL_REGEX.test(value);
+        break;
+      case 'password':
+        passwordValid = value.trim().length > 6;
+        break;
+        break;
+    }
+    const formValid = emailValid && passwordValid && (login || (!login && nameValid));
+    this.setState({
+      [name]: value, emailValid, formValid, nameValid, passwordValid
+    });
+  }
+
+  _handleMutationError = err => {
+    const { login } = this.state;
+    let error;
+    if (login) { error = 'The password was incorrect or the email is not yet registered.'; }
+    else { error = 'There was an error while processing the request.'; }
+    this.setState({ error });
+  }
+
+  _handleMutationCompleted = async (data) => {
     const token = data.login;
     this._saveUserData(token);
     this.props.history.push('/');
@@ -30,7 +71,23 @@ class Login extends Component {
   }
 
   render() {
-    const { login, email, password, name } = this.state;
+    const { email, emailValid, error, formValid,
+            login, name, nameValid, password, passwordValid } = this.state;
+
+ 
+   const loginInput = (
+      <div className="field">
+        <p className="control has-icons-left">
+          <input type="text" value={ name } placeholder="Name"
+                 name='name' onChange={ this._handleInputsChange }
+                 className={ `input ${name.trim().length <= 0 ? '' : nameValid ? 'is-success' : 'is-danger'}` }
+                 ref={ ref => this.nameInput = ref } />
+          <span className="icon is-small is-left">
+            <i className="fas fa-user"></i>
+          </span>
+        </p>
+      </div>
+    );
 
     return (
       <section className="section">
@@ -40,37 +97,31 @@ class Login extends Component {
               <h1 className="title has-text-centered">
                 { login ? 'Turing Login' : 'Register Turing' }
               </h1>
-              <form action="" method="POST">
-                {!login && (
-                   <div className="field">
-                     <p className="control has-icons-left has-icons-right">
-                       <input type="text" value={ name } placeholder="Name"
-                              onChange={
-                                e => this.setState({ name: e.target.value })
-                              } className="input" required />
-                     </p>
-                   </div>
-                )}
+              { error && error.trim().length ? (
+                  <article className="message is-danger">
+                    <div className="message-body">
+                      { error }
+                    </div>
+                  </article>
+              ) : null }
+              <form method="POST">
+                { !login && loginInput }
                 <div className="field">
-                  <p className="control has-icons-left has-icons-right">
+                  <p className="control has-icons-left">
                     <input type="email" value={ email } placeholder="Email"
-                           onChange={
-                             e => this.setState({ email: e.target.value })
-                           } className="input" required />
+                           name='email' onChange={ e => this._handleInputsChange(e) }
+                           className={ `input ${email.trim().length <= 0 ? '' : emailValid ? 'is-success' : 'is-danger'}` }
+                      ref={ ref => this.emailInput = ref } />
                     <span className="icon is-small is-left">
                       <i className="fas fa-envelope"></i>
-                    </span>
-                    <span className="icon is-small is-right">
-                      <i className="fas fa-check"></i>
                     </span>
                   </p>
                 </div>
                 <div className="field">
                   <p className="control has-icons-left">
                     <input type="password" value={ password } placeholder="Password"
-                           onChange={
-                             e => this.setState({ password: e.target.value })
-                           } className="input" required />
+                           name='password' onChange={ this._handleInputsChange }
+                           className={ `input ${password.trim().length <= 0 ? '' : passwordValid ? 'is-success' : 'is-danger'}` } />
                     <span className="icon is-small is-left">
                       <i className="fas fa-lock"></i>
                     </span>
@@ -78,11 +129,13 @@ class Login extends Component {
                 </div>
                 <div className="field">
                   <p className="control">
-                    <Mutation mutation={ LoginMutation }
-                              variables={ { email, password } }
-                              onCompleted={ data => this._confirm(data) }>
+                    <Mutation mutation={ login ? LoginMutation : RegisterMutation } variables={ { name, email, password } }
+                              onError={ err => this._handleMutationError(err) }
+                              onCompleted={ data => this._handleMutationCompleted(data) }>
                       { mutation => (
-                        <a onClick={ mutation } className="button is-success is-fullwidth">
+                        <a onClick={ formValid ? mutation : null }
+                           className='button is-success is-fullwidth'
+                           disabled={ !formValid }>
                           { login ? 'Login' : 'Register' }
                         </a>
                       ) }
@@ -92,7 +145,11 @@ class Login extends Component {
                 <div className="field">
                   <p className="control">
                     <a className="button is-fullwidth"
-                            onClick={ () => this.setState({ login: !login }) }>
+                      onClick={ () => {
+                        this.setState({ login: !login });
+                        if (!login) { this.emailInput.focus(); }
+                        else { this.emailInput.focus(); }
+                      } }>
                       { login ? 'Create account?' : 'Already have account?' }
                     </a>
                   </p>

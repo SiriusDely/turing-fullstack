@@ -29,7 +29,7 @@ class DepartmentsSelect extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { departmentId } = nextProps;
-    this.state = { departmentId };
+    this.setState = { departmentId };
   }
 
   render() {

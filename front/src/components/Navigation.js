@@ -30,8 +30,11 @@ const Navigation = (props) => {
             <div className="buttons">
               { authToken ? (
                   <button className="button is-warning" to="/login" onClick={ () => {
-                      localStorage.removeItem(AUTH_TOKEN);
-                      props.history.push('/');
+                      const confirm = window.confirm('Logout from Turing?');
+                      if (confirm) {
+                        localStorage.removeItem(AUTH_TOKEN);
+                        props.history.push('/');
+                      }
                   } }>Logout</button>
               ) : (
                   <NavLink className="button" to="/login">Login</NavLink>

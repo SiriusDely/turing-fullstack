@@ -12,11 +12,11 @@
   <div class="columns is-mobile">
     <div class="column is-three-fifths is-offset-one-fifth">
       <h1 class="title">
-          @if(department)
-            Edit Department #{{ department.department_id }}
-          @else
-            Create New Department
-          @endif
+        @if(department)
+          Edit Department #{{ department.department_id }}
+        @else
+          Create New Department
+        @endif
       </h1>
       <form method="{{ department ? 'POST' : 'POST' }}"
         action="{{ department ? (route('departments.update', { id: department.department_id }) + '?_method=PUT') : route('departments.store') }}">

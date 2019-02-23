@@ -8,7 +8,7 @@ The project's structure is loosely based on [a Heroku blog post](https://blog.he
 
 - Platform: [Node.js](https://nodejs.org) with [Yarn](https://yarnpkg.com) dependency manager
 - Backend Framework: [Adonis](https://adonisjs.com)
-  - API: [GraphQL](https://graphql.github.io) with [Apollo](https://apollographql.com)
+  - API: [GraphQL](https://graphql.github.io) with [Apollo](https://www.apollographql.com/docs/react)
   - Process Manager: [PM2](https://pm2.io)
 - Frontend Framework: [React](https://reactjs.org) with [CRA](https://facebook.github.io/create-react-app)
   - CSS Framework: [Bulma](https://bulma.io)
