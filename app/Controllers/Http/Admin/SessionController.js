@@ -4,6 +4,14 @@ const { validateAll } = use('Validator');
 
 class SessionController {
 
+  async index({ response, auth }) {
+    if (!auth.user) {
+      return response.route('admin.login');
+    } else {
+      return response.route('admin.dashboard');
+    }
+  }
+
   async create({ view }) {
     return view.render('admin.sessions.create');
   }

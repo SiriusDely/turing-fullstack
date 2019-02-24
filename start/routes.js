@@ -27,6 +27,10 @@ Route.get('/api', () => {
   return { greeting: 'Hello world in JSON' };
 });
 
+Route.get('/admin', 'SessionController.index')
+  .namespace('Admin')
+  .as('admin');
+
 Route.get('/admin/login', 'SessionController.create')
   .namespace('Admin')
   .middleware('guest')
@@ -37,12 +41,19 @@ Route.post('/admin/sessions/store', 'SessionController.store')
   .middleware('guest')
   .as('admin.sessions.store');
 
-Route.delete('/admin/logout', 'SessionController.destroy')
+Route.get('/admin/dashboard', 'ProductController.index')
   .namespace('Admin')
-  .as('admin.sessions.destroy');
+  .middleware('auth')
+  .as('admin.dashboard');
+
+Route.get('/admin/logout', 'SessionController.destroy')
+  .namespace('Admin')
+  .middleware('auth')
+  .as('admin.logout');
 
 Route.delete('/admin/sessions/destroy', 'SessionController.destroy')
   .namespace('Admin')
+  .middleware('auth')
   .as('admin.sessions.destroy');
 
 Route.group(() => {
@@ -84,6 +95,7 @@ Route.group(() => {
     ]));
 })
   .prefix('admin')
+  .middleware('auth')
   .namespace('Admin');
 
 Route.route('/graphql', ({ request, auth, response }) => {
