@@ -17,9 +17,11 @@ The project's structure is loosely based on [a Heroku blog post](https://blog.he
 - Hosted on: [Heroku](https://heroku.com)
 
 Todos left:
+- Email registration confirmation
 - Test driven development
-- Separate login for Customers vs. Users (Admin)
+- Separate Login (Authentication & Authorization Models) for Customers vs. Users (Admin)
 - [Facebook Login](https://developers.facebook.com/docs/facebook-login/web)
 - Product images hosting using [Cloudinary](https://elements.heroku.com/addons/cloudinary) or [AWS S3](https://aws.amazon.com/s3)
 - Shopping cart
 - Checkout process, including payment gateway integration
+- Email order confirmation
