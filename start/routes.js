@@ -37,6 +37,14 @@ Route.post('/admin/sessions/store', 'SessionController.store')
   .middleware('guest')
   .as('admin.sessions.store');
 
+Route.delete('/admin/logout', 'SessionController.destroy')
+  .namespace('Admin')
+  .as('admin.sessions.destroy');
+
+Route.delete('/admin/sessions/destroy', 'SessionController.destroy')
+  .namespace('Admin')
+  .as('admin.sessions.destroy');
+
 Route.group(() => {
   Route.resource('departments', 'DepartmentController')
     .only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
