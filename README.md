@@ -17,7 +17,6 @@ The project's structure is loosely based on [a Heroku blog post](https://blog.he
 - Hosted on: [Heroku](https://heroku.com)
 
 Todos left:
-- Friendly error messages
 - Test driven development
 - Separate login for Customers vs. Users (Admin)
 - [Facebook Login](https://developers.facebook.com/docs/facebook-login/web)
