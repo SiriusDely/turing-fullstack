@@ -2,7 +2,7 @@
 
 https://turing-fullstack.herokuapp.com
 
-Admin dashboard can be accessed on https://turing-fullstack.herokuapp.com/admin/login .
+Admin dashboard can be accessed on https://turing-fullstack.herokuapp.com/admin.
 
 The project's structure is loosely based on [a Heroku blog post](https://blog.heroku.com/a-rock-solid-modern-web-stack).
 
