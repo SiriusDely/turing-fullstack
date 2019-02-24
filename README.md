@@ -21,7 +21,7 @@ Todos left:
 - Test driven development
 - Separate Login (Authentication & Authorization Models) for Customers vs. Users (Admin)
 - [Facebook Login](https://developers.facebook.com/docs/facebook-login/web)
-- Product images hosting using [Cloudinary](https://elements.heroku.com/addons/cloudinary) or [AWS S3](https://aws.amazon.com/s3)
+- Updating product images, hosting using [Cloudinary](https://elements.heroku.com/addons/cloudinary) or [AWS S3](https://aws.amazon.com/s3)
 - Shopping cart
 - Checkout process, including payment gateway integration
 - Email order confirmation
