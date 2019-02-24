@@ -7,7 +7,7 @@ class ProductRow extends React.Component {
     let priceComponent;
     if (reducedPrice && reducedPrice > 0) {
       priceComponent = <p className="subtitle is-6">
-        <span style={ { textDecoration: 'line-through' } }>${ price }</span> ${ (price - reducedPrice).toFixed(2) }
+        <span style={ { textDecoration: 'line-through' } }>${ price }</span> ${ reducedPrice.toFixed(2) }
       </p>
     } else {
       priceComponent = <p className="subtitle is-6">${ price }</p>
