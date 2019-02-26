@@ -748,7 +748,6 @@ COPY public.tokens (id, user_id, token, type, is_revoked, created_at, updated_at
 --
 
 COPY public.users (id, username, email, password, created_at, updated_at) FROM stdin;
-1	mezie	mezie@example.com	$2a$10$MY56u7iQJgnsS3SmA9C5mehC8HF.m1tcFZe4EukX6wRz1HR/6GivC	2019-02-15 11:25:05+07	2019-02-15 11:25:05+07
 12	sirius	sirius@example.com	$2a$10$DHPAD4494gZadLAR7n7SxeoUr9kopteu4BzTPmbfsGjb4Oz26qpHy	2019-02-17 07:01:12+07	2019-02-17 07:01:12+07
 \.
 
@@ -760,7 +759,6 @@ COPY public.users (id, username, email, password, created_at, updated_at) FROM s
 COPY public.attribute (attribute_id, name) FROM stdin;
 1	Size
 2	Color
-3	si
 \.
 
 
@@ -783,8 +781,6 @@ COPY public.attribute_value (attribute_value_id, attribute_id, value) FROM stdin
 12	2	Blue
 13	2	Indigo
 14	2	Purple
-16	3	a   dfsdfsdfdsf
-15	3	asfdasdfasfd hoohh
 \.
 
 
@@ -808,9 +804,6 @@ COPY public.category (category_id, department_id, name, description) FROM stdin;
 5	2	Flower	These unique and beautiful flower T-shirts are just the item for the gardener, flower arranger, florist, or general lover of things beautiful. Surprise the flower in your life with one of the beautiful botanical T-shirts or just get a few for yourself!
 6	3	Christmas	 Because this is a unique Christmas T-shirt that you'll only wear a few times a year, it will probably last for decades (unless some grinch nabs it from you, of course). Far into the future, after you're gone, your grandkids will pull it out and argue over who gets to wear it. What great snapshots they'll make dressed in Grandpa or Grandma's incredibly tasteful and unique Christmas T-shirt! Yes, everyone will remember you forever and what a silly goof you were when you would wear only your Santa beard and cap so you wouldn't cover up your nifty T-shirt.
 7	3	Valentine's	For the more timid, all you have to do is wear your heartfelt message to get it across. Buy one for you and your sweetie(s) today!
-8	2	asdf	asdf\r\n
-9	9	asdfasdf 2	asdfasdfasdf 2
-10	6	hohohohoho	hohooohohohohh
 \.
 
 
@@ -830,14 +823,6 @@ COPY public.department (department_id, name, description) FROM stdin;
 1	Regional	Proud of your country? Wear a T-shirt with a national symbol stamp!
 2	Nature	Find beautiful T-shirts with animals and flowers in our Nature department!
 3	Seasonal	Each time of the year has a special flavor. Our seasonal T-shirts express traditional symbols using unique postal stamp pictures.
-4	test department name	test department description
-7	asdfasdf	asdfasdfasdf
-8	asdfasdfasdfasdf	asdfasdfasdfasdfasdfasdf
-9	test dpeart 2	test depart 2
-10	test dpeart 3	test depart 3
-11	test dpart 4	test depart 4
-5	as asdfasdf	as asdfasfsdfdfd
-6	as hohoho	as hohhohohooho
 \.
 
 
@@ -963,7 +948,6 @@ COPY public.product (product_id, name, description, price, discounted_price, ima
 99	Thrilling Love	This girl's got her hockey hunk right where she wants him!	21.00	18.50	thrilling-love.gif	thrilling-love-2.gif	thrilling-love-thumbnail.gif	2
 100	The Rapture of Psyche	Now we're getting a bit more serious!	18.95	16.99	the-rapture-of-psyche.gif	the-rapture-of-psyche-2.gif	the-rapture-of-psyche-thumbnail.gif	2
 101	The Promise of Spring	With Valentine's Day come, can Spring be far behind?	21.00	19.50	the-promise-of-spring.gif	the-promise-of-spring-2.gif	the-promise-of-spring-thumbnail.gif	0
-102	asdfasdf		10.05	0.00	\N	\N	\N	0
 \.
 
 

@@ -83,7 +83,8 @@ typings/
 tmp
 
 # The development sqlite file
-database/development.sqlite
+database/*.sqlite
+database/*.sqlite-journal
 
 # Ignore public, as it is built on deploy
 # Place files for /public in /front/public
