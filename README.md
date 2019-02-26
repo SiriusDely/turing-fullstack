@@ -30,7 +30,7 @@ Todos left:
 
 ### Running steps
 
-The whole app (backend & frontend) can be run by using combinations of [Adonis CLI](https://adonisjs.com/docs/4.1/installation#_installing_adonisjs) and/or [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) and/or [PM2](https://pm2.io/runtime).
+The whole app (backend & frontend) can be run by using combinations of [Yarn](https://yarnpkg.com/en/docs/install) and/or [Adonis CLI](https://adonisjs.com/docs/4.1/installation#_installing_adonisjs) and/or [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) and/or [PM2](https://pm2.io/runtime).
 
 Without those tools above, we can run the app quickly with these steps:
 
