@@ -27,3 +27,20 @@ Todos left:
 - Email order confirmation
 - Query and response caching with Redis
 - Full-text search with Elasticsearch
+
+### Running steps
+
+The whole app (backend & frontend) can be run by using combinations of [Adonis CLI](https://adonisjs.com/docs/4.1/installation#_installing_adonisjs) and/or [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) and/or [PM2](https://pm2.io/runtime).
+<br>The app can be run quickly locally with few steps:
+
+1. `git clone --depth=1 git@github.com:siriusdely/turing-fullstack.git`: shallow clone the repo with only single commit. Or  download [zip](https://github.com/siriusdely/turing-fullstack/archive/master.zip) and unzip.
+2. `cd turing-fullstack`: enter project directory.
+3. `cp .env.example .env`: copy environment variables file using the template.
+4. `npm install`: install package dependencies.
+5. `node ace migration:run && node ace seed`: setup database using migration & seed.
+6. `node server.js`: run the server app.
+7. Open a browser and go to: http://localhost:3333/admin.
+8. `cd front`: Open another terminal and enter the frontend app directory.
+9. `npm install`: install package dependencies for the frontend app.
+10. `npm start`: run the client app.
+10. Open a browser and go to: http://localhost:3000.
