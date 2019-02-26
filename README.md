@@ -31,7 +31,8 @@ Todos left:
 ### Running steps
 
 The whole app (backend & frontend) can be run by using combinations of [Adonis CLI](https://adonisjs.com/docs/4.1/installation#_installing_adonisjs) and/or [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) and/or [PM2](https://pm2.io/runtime).
-<br>The app can be run quickly locally with few steps:
+
+Without those tools above, we can run the app quickly with these steps:
 
 1. `git clone --depth=1 git@github.com:siriusdely/turing-fullstack.git`: shallow clone the repo with only single commit. Or  download [zip](https://github.com/siriusdely/turing-fullstack/archive/master.zip) and unzip.
 2. `cd turing-fullstack`: enter project directory.
