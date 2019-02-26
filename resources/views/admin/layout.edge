@@ -41,7 +41,7 @@
               @loggedIn
               <form action="{{ route('admin.sessions.destroy') + '?_method=DELETE' }}" method="POST">
                 {{ csrfField() }}
-                <button class="button is-warning" type="submit">
+                <button class="button is-warning" type="submit" onclick="return confirm('Logout from Admin?')">
                   Logout
                 </button>
               </form>
@@ -58,6 +58,11 @@
 
     <section class="section">
       <div class="container">
+        @if(flashMessage('notification'))
+          <div class="notification is-info">
+            {{ flashMessage('notification') }}
+          </div>
+        @endif
         <div class="content">
           @!section('content')
         </div>

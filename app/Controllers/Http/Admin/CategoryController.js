@@ -134,7 +134,14 @@ class CategoryController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, response, session }) {
+    const { id } = params;
+
+    const category = await Category.findOrFail(id);
+    await category.delete();
+
+    session.flash({ notification: `Category deleted: ${ category.name }.` })
+    return response.route('categories.index');
   }
 }
 

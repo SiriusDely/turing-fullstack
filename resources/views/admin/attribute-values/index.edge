@@ -30,9 +30,13 @@
             <tr>
               <td>{{ value.attribute_value_id }}</td>
               <td>{{ value.value }}</td>
-              @if(!attribute)
-                <td><a href={{ route('attributes.edit', { id: value.attribute.attribute_id }) }}>{{ value.attribute.name }}</a></td>
-              @endif
+              <td>
+                @if(!attribute && value.attribute)
+                <a href={{ route('attributes.edit', { id: value.attribute.attribute_id }) }}>
+                  {{ value.attribute.name }}
+                </a>
+                @endif
+              </td>
               <td><a href={{ route('attribute-values.edit', { id: value.attribute_value_id }) }}>Edit</a></td>
             </tr>
           @endeach

@@ -40,34 +40,34 @@
           {{ elIf('<span>$self</span>', getErrorFor('description'), hasErrorFor('description')) }}
         </div>
         <div class="columns">
-        <div class="field column">
-          <label class="label">Price</label>
-          <div class="control has-icons-left">
-            <input class="input" type="text" placeholder="Price" name="price"
-              value="{{ old('price') ? old('price') : product ? product.price : ''}}" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-dollar-sign"></i>
-            </span>
+          <div class="field column">
+            <label class="label">Price</label>
+            <div class="control has-icons-left">
+              <input class="input" type="text" placeholder="Price" name="price"
+                value="{{ old('price') ? old('price') : product ? product.price : ''}}" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-dollar-sign"></i>
+              </span>
+            </div>
+            @if(hasErrorFor('price'))
+              <span>{{ getErrorFor('price') }}</span>
+            @endif
           </div>
-          @if(hasErrorFor('price'))
-            <span>{{ getErrorFor('price') }}</span>
-          @endif
-        </div>
-       <div class="field column">
-          <label class="label">Discounted Price</label>
-          <div class="control has-icons-left">
-            <input class="input" type="text" placeholder="Discounted Price" name="discounted_price"
-              value="{{ old('discounted_price') ? old('discounted_price') : product ? product.discounted_price: ''}}" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-dollar-sign"></i>
-            </span>
+          <div class="field column">
+            <label class="label">Discounted Price</label>
+            <div class="control has-icons-left">
+              <input class="input" type="text" placeholder="Discounted Price" name="discounted_price"
+                value="{{ old('discounted_price') ? old('discounted_price') : product ? product.discounted_price: ''}}" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-dollar-sign"></i>
+              </span>
+            </div>
+            @if(hasErrorFor('discounted_price'))
+              <span>{{ getErrorFor('discounted_price') }}</span>
+            @endif
           </div>
-          @if(hasErrorFor('discounted_price'))
-            <span>{{ getErrorFor('discounted_price') }}</span>
-          @endif
         </div>
-        </div>
-				<br />
+        <br />
         <div class="field">
           <div class="control buttons">
 						<button class="button is-success is-fullwidth" type="submit">
@@ -76,17 +76,26 @@
 							</span>
 							<span>{{ product ? 'Update' : 'Create' }}</span>
 						</button>
-						@if(product)
-							<a class="button is-danger is-outlined is-fullwidth">
-								<span class="icon is-small">
-									<i class="fas fa-times"></i>
-								</span>
-								<span>Delete</span>
-							</a>
-						@endif
           </div>
         </div>
       </form>
+      @if(product)
+				<br />
+        <form action="{{ route('products.destroy', { id: product.product_id }) + '?_method=DELETE' }}" method="POST">
+          <div class="field">
+            <div class="control buttons">
+              {{ csrfField() }}
+              <button class="button is-danger is-outlined is-fullwidth" type="submit"
+                      onclick="return confirm('Delete Product #{{ product.product_id }}: {{ product.name }}?')">
+                <span class="icon is-small">
+                  <i class="fas fa-times"></i>
+                </span>
+                <span>Delete</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      @endif
     </div>
   </div>
 @endsection

@@ -37,7 +37,7 @@ class SessionController {
     return response.redirect('/admin');
   }
 
-  async destroy ({ auth, response }) {
+  async destroy({ auth, response }) {
     await auth.logout();
     return response.redirect('/admin/login');
   }

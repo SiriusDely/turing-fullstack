@@ -111,7 +111,14 @@ class ProductController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, response, session }) {
+    const { id } = params;
+
+    const product = await Product.findOrFail(id);
+    await product.delete();
+
+    session.flash({ notification: `Product deleted: ${ product.name }.` })
+    return response.route('products.index');
   }
 }
 

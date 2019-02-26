@@ -1,5 +1,6 @@
 'use strict';
 
+const Database = use('Database');
 const Department = use('App/Models/Department');
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
@@ -115,7 +116,17 @@ class DepartmentController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, response, session }) {
+    const { id } = params;
+
+    const transaction = await Database.beginTransaction()
+    const department = await Department.findOrFail(id, transaction);
+    await department.delete(transaction);
+    await department.categories().delete(transaction);
+    transaction.commit();
+
+    session.flash({ notification: `Department deleted: ${ department.name }.` })
+    return response.route('departments.index');
   }
 }
 

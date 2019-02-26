@@ -105,7 +105,14 @@ class AttributeController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, response, session }) {
+    const { id } = params;
+
+    const attribute = await Attribute.findOrFail(id);
+    await attribute.delete();
+
+    session.flash({ notification: `Attribute deleted: ${ attribute.name }.` })
+    return response.route('attributes.index');
   }
 }
 

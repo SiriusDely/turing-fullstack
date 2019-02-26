@@ -61,17 +61,26 @@
 							</span>
 							<span>{{ category ? 'Update' : 'Create' }}</span>
 						</button>
-						@if(category)
-							<a class="button is-danger is-outlined is-fullwidth">
-								<span class="icon is-small">
-									<i class="fas fa-times"></i>
-								</span>
-								<span>Delete</span>
-							</a>
-						@endif
           </div>
         </div>
       </form>
+      @if(category)
+				<br />
+        <form action="{{ route('categories.destroy', { id: category.category_id }) + '?_method=DELETE' }}" method="POST">
+          <div class="field">
+            <div class="control buttons">
+              {{ csrfField() }}
+              <button class="button is-danger is-outlined is-fullwidth" type="submit"
+                      onclick="return confirm('Delete Category #{{ category.category_id }}: {{ category.name }}?')">
+                <span class="icon is-small">
+                  <i class="fas fa-times"></i>
+                </span>
+                <span>Delete</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      @endif
     </div>
   </div>
 @endsection

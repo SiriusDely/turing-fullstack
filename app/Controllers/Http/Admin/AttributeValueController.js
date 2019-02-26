@@ -115,7 +115,7 @@ class AttributeValueController {
 
     return view.render('admin.attribute-values.edit', {
       value: value.toJSON(),
-      attribute: attribute.toJSON(),
+      attribute: attribute ? attribute.toJSON() : null,
       attributes: attributes.toJSON()
     });
   }
@@ -154,7 +154,14 @@ class AttributeValueController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy ({ params, response, session }) {
+    const { id } = params;
+
+    const aValue = await AttributeValue.findOrFail(id);
+    await aValue.delete();
+
+    session.flash({ notification: `Attribute Value deleted: ${ aValue.value }.` })
+    return response.route('attribute-values.index');
   }
 }
 
