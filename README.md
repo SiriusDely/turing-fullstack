@@ -25,3 +25,5 @@ Todos left:
 - Shopping cart
 - Checkout process, including payment gateway integration
 - Email order confirmation
+- Query and response caching with Redis
+- Full-text search with Elasticsearch
