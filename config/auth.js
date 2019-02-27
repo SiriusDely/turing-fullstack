@@ -35,6 +35,17 @@ module.exports = {
     password: 'password'
   },
 
+  customer: {
+    serializer: 'lucid',
+    model: 'App/Models/Customer',
+    scheme: 'jwt',
+    uid: 'email',
+    password: 'password',
+    options: {
+      secret: Env.get('APP_KEY')
+    }
+  },
+
   /*
   |--------------------------------------------------------------------------
   | Basic Auth

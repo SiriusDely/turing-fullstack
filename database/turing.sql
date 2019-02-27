@@ -15,12 +15,6 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Name: turing; Type: SCHEMA; Schema: -; Owner: -
---
-
-CREATE SCHEMA turing;
-
 
 SET default_tablespace = '';
 
@@ -128,7 +122,7 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: attribute; Type: TABLE; Schema: turing; Owner: -
+-- Name: attribute; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.attribute (
@@ -138,7 +132,7 @@ CREATE TABLE public.attribute (
 
 
 --
--- Name: attribute_attribute_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: attribute_attribute_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.attribute_attribute_id_seq
@@ -150,14 +144,14 @@ CREATE SEQUENCE public.attribute_attribute_id_seq
 
 
 --
--- Name: attribute_attribute_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: attribute_attribute_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.attribute_attribute_id_seq OWNED BY turing.attribute.attribute_id;
+ALTER SEQUENCE public.attribute_attribute_id_seq OWNED BY public.attribute.attribute_id;
 
 
 --
--- Name: attribute_value; Type: TABLE; Schema: turing; Owner: -
+-- Name: attribute_value; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.attribute_value (
@@ -168,7 +162,7 @@ CREATE TABLE public.attribute_value (
 
 
 --
--- Name: attribute_value_attribute_value_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: attribute_value_attribute_value_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.attribute_value_attribute_value_id_seq
@@ -180,14 +174,14 @@ CREATE SEQUENCE public.attribute_value_attribute_value_id_seq
 
 
 --
--- Name: attribute_value_attribute_value_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: attribute_value_attribute_value_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.attribute_value_attribute_value_id_seq OWNED BY turing.attribute_value.attribute_value_id;
+ALTER SEQUENCE public.attribute_value_attribute_value_id_seq OWNED BY public.attribute_value.attribute_value_id;
 
 
 --
--- Name: audit; Type: TABLE; Schema: turing; Owner: -
+-- Name: audit; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.audit (
@@ -200,7 +194,7 @@ CREATE TABLE public.audit (
 
 
 --
--- Name: audit_audit_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: audit_audit_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.audit_audit_id_seq
@@ -212,14 +206,14 @@ CREATE SEQUENCE public.audit_audit_id_seq
 
 
 --
--- Name: audit_audit_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: audit_audit_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.audit_audit_id_seq OWNED BY turing.audit.audit_id;
+ALTER SEQUENCE public.audit_audit_id_seq OWNED BY public.audit.audit_id;
 
 
 --
--- Name: category; Type: TABLE; Schema: turing; Owner: -
+-- Name: category; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.category (
@@ -231,7 +225,7 @@ CREATE TABLE public.category (
 
 
 --
--- Name: category_category_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: category_category_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.category_category_id_seq
@@ -243,21 +237,21 @@ CREATE SEQUENCE public.category_category_id_seq
 
 
 --
--- Name: category_category_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: category_category_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.category_category_id_seq OWNED BY turing.category.category_id;
+ALTER SEQUENCE public.category_category_id_seq OWNED BY public.category.category_id;
 
 
 --
--- Name: customer; Type: TABLE; Schema: turing; Owner: -
+-- Name: customer; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.customer (
     customer_id bigint NOT NULL,
     name character varying(50) NOT NULL,
     email character varying(100) NOT NULL,
-    password character varying(50) NOT NULL,
+    password character varying(60) NOT NULL,
     credit_card text,
     address_1 character varying(100),
     address_2 character varying(100),
@@ -273,7 +267,7 @@ CREATE TABLE public.customer (
 
 
 --
--- Name: customer_customer_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: customer_customer_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.customer_customer_id_seq
@@ -285,14 +279,14 @@ CREATE SEQUENCE public.customer_customer_id_seq
 
 
 --
--- Name: customer_customer_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: customer_customer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.customer_customer_id_seq OWNED BY turing.customer.customer_id;
+ALTER SEQUENCE public.customer_customer_id_seq OWNED BY public.customer.customer_id;
 
 
 --
--- Name: department; Type: TABLE; Schema: turing; Owner: -
+-- Name: department; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.department (
@@ -303,7 +297,7 @@ CREATE TABLE public.department (
 
 
 --
--- Name: department_department_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: department_department_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.department_department_id_seq
@@ -315,14 +309,14 @@ CREATE SEQUENCE public.department_department_id_seq
 
 
 --
--- Name: department_department_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: department_department_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.department_department_id_seq OWNED BY turing.department.department_id;
+ALTER SEQUENCE public.department_department_id_seq OWNED BY public.department.department_id;
 
 
 --
--- Name: order_detail; Type: TABLE; Schema: turing; Owner: -
+-- Name: order_detail; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.order_detail (
@@ -337,7 +331,7 @@ CREATE TABLE public.order_detail (
 
 
 --
--- Name: order_detail_item_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: order_detail_item_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.order_detail_item_id_seq
@@ -349,14 +343,14 @@ CREATE SEQUENCE public.order_detail_item_id_seq
 
 
 --
--- Name: order_detail_item_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: order_detail_item_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.order_detail_item_id_seq OWNED BY turing.order_detail.item_id;
+ALTER SEQUENCE public.order_detail_item_id_seq OWNED BY public.order_detail.item_id;
 
 
 --
--- Name: orders; Type: TABLE; Schema: turing; Owner: -
+-- Name: orders; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.orders (
@@ -375,7 +369,7 @@ CREATE TABLE public.orders (
 
 
 --
--- Name: orders_order_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: orders_order_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.orders_order_id_seq
@@ -387,14 +381,14 @@ CREATE SEQUENCE public.orders_order_id_seq
 
 
 --
--- Name: orders_order_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: orders_order_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.orders_order_id_seq OWNED BY turing.orders.order_id;
+ALTER SEQUENCE public.orders_order_id_seq OWNED BY public.orders.order_id;
 
 
 --
--- Name: product; Type: TABLE; Schema: turing; Owner: -
+-- Name: product; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.product (
@@ -411,7 +405,7 @@ CREATE TABLE public.product (
 
 
 --
--- Name: product_attribute; Type: TABLE; Schema: turing; Owner: -
+-- Name: product_attribute; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.product_attribute (
@@ -421,7 +415,7 @@ CREATE TABLE public.product_attribute (
 
 
 --
--- Name: product_category; Type: TABLE; Schema: turing; Owner: -
+-- Name: product_category; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.product_category (
@@ -431,7 +425,7 @@ CREATE TABLE public.product_category (
 
 
 --
--- Name: product_product_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: product_product_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.product_product_id_seq
@@ -443,14 +437,14 @@ CREATE SEQUENCE public.product_product_id_seq
 
 
 --
--- Name: product_product_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: product_product_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.product_product_id_seq OWNED BY turing.product.product_id;
+ALTER SEQUENCE public.product_product_id_seq OWNED BY public.product.product_id;
 
 
 --
--- Name: review; Type: TABLE; Schema: turing; Owner: -
+-- Name: review; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.review (
@@ -464,7 +458,7 @@ CREATE TABLE public.review (
 
 
 --
--- Name: review_review_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: review_review_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.review_review_id_seq
@@ -476,14 +470,14 @@ CREATE SEQUENCE public.review_review_id_seq
 
 
 --
--- Name: review_review_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: review_review_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.review_review_id_seq OWNED BY turing.review.review_id;
+ALTER SEQUENCE public.review_review_id_seq OWNED BY public.review.review_id;
 
 
 --
--- Name: shipping; Type: TABLE; Schema: turing; Owner: -
+-- Name: shipping; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.shipping (
@@ -495,7 +489,7 @@ CREATE TABLE public.shipping (
 
 
 --
--- Name: shipping_region; Type: TABLE; Schema: turing; Owner: -
+-- Name: shipping_region; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.shipping_region (
@@ -505,7 +499,7 @@ CREATE TABLE public.shipping_region (
 
 
 --
--- Name: shipping_region_shipping_region_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: shipping_region_shipping_region_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.shipping_region_shipping_region_id_seq
@@ -517,14 +511,14 @@ CREATE SEQUENCE public.shipping_region_shipping_region_id_seq
 
 
 --
--- Name: shipping_region_shipping_region_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: shipping_region_shipping_region_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.shipping_region_shipping_region_id_seq OWNED BY turing.shipping_region.shipping_region_id;
+ALTER SEQUENCE public.shipping_region_shipping_region_id_seq OWNED BY public.shipping_region.shipping_region_id;
 
 
 --
--- Name: shipping_shipping_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: shipping_shipping_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.shipping_shipping_id_seq
@@ -536,14 +530,14 @@ CREATE SEQUENCE public.shipping_shipping_id_seq
 
 
 --
--- Name: shipping_shipping_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: shipping_shipping_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.shipping_shipping_id_seq OWNED BY turing.shipping.shipping_id;
+ALTER SEQUENCE public.shipping_shipping_id_seq OWNED BY public.shipping.shipping_id;
 
 
 --
--- Name: shopping_cart; Type: TABLE; Schema: turing; Owner: -
+-- Name: shopping_cart; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.shopping_cart (
@@ -558,7 +552,7 @@ CREATE TABLE public.shopping_cart (
 
 
 --
--- Name: shopping_cart_item_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: shopping_cart_item_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.shopping_cart_item_id_seq
@@ -570,14 +564,14 @@ CREATE SEQUENCE public.shopping_cart_item_id_seq
 
 
 --
--- Name: shopping_cart_item_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: shopping_cart_item_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.shopping_cart_item_id_seq OWNED BY turing.shopping_cart.item_id;
+ALTER SEQUENCE public.shopping_cart_item_id_seq OWNED BY public.shopping_cart.item_id;
 
 
 --
--- Name: tax; Type: TABLE; Schema: turing; Owner: -
+-- Name: tax; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.tax (
@@ -588,7 +582,7 @@ CREATE TABLE public.tax (
 
 
 --
--- Name: tax_tax_id_seq; Type: SEQUENCE; Schema: turing; Owner: -
+-- Name: tax_tax_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
 CREATE SEQUENCE public.tax_tax_id_seq
@@ -600,10 +594,10 @@ CREATE SEQUENCE public.tax_tax_id_seq
 
 
 --
--- Name: tax_tax_id_seq; Type: SEQUENCE OWNED BY; Schema: turing; Owner: -
+-- Name: tax_tax_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.tax_tax_id_seq OWNED BY turing.tax.tax_id;
+ALTER SEQUENCE public.tax_tax_id_seq OWNED BY public.tax.tax_id;
 
 
 --
@@ -628,101 +622,101 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- Name: attribute attribute_id; Type: DEFAULT; Schema: turing; Owner: -
+-- Name: attribute attribute_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.attribute ALTER COLUMN attribute_id SET DEFAULT nextval('turing.attribute_attribute_id_seq'::regclass);
-
-
---
--- Name: attribute_value attribute_value_id; Type: DEFAULT; Schema: turing; Owner: -
---
-
-ALTER TABLE ONLY public.attribute_value ALTER COLUMN attribute_value_id SET DEFAULT nextval('turing.attribute_value_attribute_value_id_seq'::regclass);
+ALTER TABLE ONLY public.attribute ALTER COLUMN attribute_id SET DEFAULT nextval('public.attribute_attribute_id_seq'::regclass);
 
 
 --
--- Name: audit audit_id; Type: DEFAULT; Schema: turing; Owner: -
+-- Name: attribute_value attribute_value_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.audit ALTER COLUMN audit_id SET DEFAULT nextval('turing.audit_audit_id_seq'::regclass);
-
-
---
--- Name: category category_id; Type: DEFAULT; Schema: turing; Owner: -
---
-
-ALTER TABLE ONLY public.category ALTER COLUMN category_id SET DEFAULT nextval('turing.category_category_id_seq'::regclass);
+ALTER TABLE ONLY public.attribute_value ALTER COLUMN attribute_value_id SET DEFAULT nextval('public.attribute_value_attribute_value_id_seq'::regclass);
 
 
 --
--- Name: customer customer_id; Type: DEFAULT; Schema: turing; Owner: -
+-- Name: audit audit_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.customer ALTER COLUMN customer_id SET DEFAULT nextval('turing.customer_customer_id_seq'::regclass);
-
-
---
--- Name: department department_id; Type: DEFAULT; Schema: turing; Owner: -
---
-
-ALTER TABLE ONLY public.department ALTER COLUMN department_id SET DEFAULT nextval('turing.department_department_id_seq'::regclass);
+ALTER TABLE ONLY public.audit ALTER COLUMN audit_id SET DEFAULT nextval('public.audit_audit_id_seq'::regclass);
 
 
 --
--- Name: order_detail item_id; Type: DEFAULT; Schema: turing; Owner: -
+-- Name: category category_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.order_detail ALTER COLUMN item_id SET DEFAULT nextval('turing.order_detail_item_id_seq'::regclass);
-
-
---
--- Name: orders order_id; Type: DEFAULT; Schema: turing; Owner: -
---
-
-ALTER TABLE ONLY public.orders ALTER COLUMN order_id SET DEFAULT nextval('turing.orders_order_id_seq'::regclass);
+ALTER TABLE ONLY public.category ALTER COLUMN category_id SET DEFAULT nextval('public.category_category_id_seq'::regclass);
 
 
 --
--- Name: product product_id; Type: DEFAULT; Schema: turing; Owner: -
+-- Name: customer customer_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.product ALTER COLUMN product_id SET DEFAULT nextval('turing.product_product_id_seq'::regclass);
-
-
---
--- Name: review review_id; Type: DEFAULT; Schema: turing; Owner: -
---
-
-ALTER TABLE ONLY public.review ALTER COLUMN review_id SET DEFAULT nextval('turing.review_review_id_seq'::regclass);
+ALTER TABLE ONLY public.customer ALTER COLUMN customer_id SET DEFAULT nextval('public.customer_customer_id_seq'::regclass);
 
 
 --
--- Name: shipping shipping_id; Type: DEFAULT; Schema: turing; Owner: -
+-- Name: department department_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.shipping ALTER COLUMN shipping_id SET DEFAULT nextval('turing.shipping_shipping_id_seq'::regclass);
-
-
---
--- Name: shipping_region shipping_region_id; Type: DEFAULT; Schema: turing; Owner: -
---
-
-ALTER TABLE ONLY public.shipping_region ALTER COLUMN shipping_region_id SET DEFAULT nextval('turing.shipping_region_shipping_region_id_seq'::regclass);
+ALTER TABLE ONLY public.department ALTER COLUMN department_id SET DEFAULT nextval('public.department_department_id_seq'::regclass);
 
 
 --
--- Name: shopping_cart item_id; Type: DEFAULT; Schema: turing; Owner: -
+-- Name: order_detail item_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.shopping_cart ALTER COLUMN item_id SET DEFAULT nextval('turing.shopping_cart_item_id_seq'::regclass);
+ALTER TABLE ONLY public.order_detail ALTER COLUMN item_id SET DEFAULT nextval('public.order_detail_item_id_seq'::regclass);
 
 
 --
--- Name: tax tax_id; Type: DEFAULT; Schema: turing; Owner: -
+-- Name: orders order_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.tax ALTER COLUMN tax_id SET DEFAULT nextval('turing.tax_tax_id_seq'::regclass);
+ALTER TABLE ONLY public.orders ALTER COLUMN order_id SET DEFAULT nextval('public.orders_order_id_seq'::regclass);
+
+
+--
+-- Name: product product_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.product ALTER COLUMN product_id SET DEFAULT nextval('public.product_product_id_seq'::regclass);
+
+
+--
+-- Name: review review_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.review ALTER COLUMN review_id SET DEFAULT nextval('public.review_review_id_seq'::regclass);
+
+
+--
+-- Name: shipping shipping_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.shipping ALTER COLUMN shipping_id SET DEFAULT nextval('public.shipping_shipping_id_seq'::regclass);
+
+
+--
+-- Name: shipping_region shipping_region_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.shipping_region ALTER COLUMN shipping_region_id SET DEFAULT nextval('public.shipping_region_shipping_region_id_seq'::regclass);
+
+
+--
+-- Name: shopping_cart item_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.shopping_cart ALTER COLUMN item_id SET DEFAULT nextval('public.shopping_cart_item_id_seq'::regclass);
+
+
+--
+-- Name: tax tax_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.tax ALTER COLUMN tax_id SET DEFAULT nextval('public.tax_tax_id_seq'::regclass);
 
 
 --
@@ -753,7 +747,7 @@ COPY public.users (id, username, email, password, created_at, updated_at) FROM s
 
 
 --
--- Data for Name: attribute; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: attribute; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.attribute (attribute_id, name) FROM stdin;
@@ -763,7 +757,7 @@ COPY public.attribute (attribute_id, name) FROM stdin;
 
 
 --
--- Data for Name: attribute_value; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: attribute_value; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.attribute_value (attribute_value_id, attribute_id, value) FROM stdin;
@@ -785,7 +779,7 @@ COPY public.attribute_value (attribute_value_id, attribute_id, value) FROM stdin
 
 
 --
--- Data for Name: audit; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: audit; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.audit (audit_id, order_id, created_on, message, code) FROM stdin;
@@ -793,7 +787,7 @@ COPY public.audit (audit_id, order_id, created_on, message, code) FROM stdin;
 
 
 --
--- Data for Name: category; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.category (category_id, department_id, name, description) FROM stdin;
@@ -808,7 +802,7 @@ COPY public.category (category_id, department_id, name, description) FROM stdin;
 
 
 --
--- Data for Name: customer; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: customer; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.customer (customer_id, name, email, password, credit_card, address_1, address_2, city, region, postal_code, country, shipping_region_id, day_phone, eve_phone, mob_phone) FROM stdin;
@@ -816,7 +810,7 @@ COPY public.customer (customer_id, name, email, password, credit_card, address_1
 
 
 --
--- Data for Name: department; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: department; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.department (department_id, name, description) FROM stdin;
@@ -827,7 +821,7 @@ COPY public.department (department_id, name, description) FROM stdin;
 
 
 --
--- Data for Name: order_detail; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: order_detail; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.order_detail (item_id, order_id, product_id, attributes, product_name, quantity, unit_cost) FROM stdin;
@@ -835,7 +829,7 @@ COPY public.order_detail (item_id, order_id, product_id, attributes, product_nam
 
 
 --
--- Data for Name: orders; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.orders (order_id, total_amount, created_on, shipped_on, status, comments, customer_id, auth_code, reference, shipping_id, tax_id) FROM stdin;
@@ -843,7 +837,7 @@ COPY public.orders (order_id, total_amount, created_on, shipped_on, status, comm
 
 
 --
--- Data for Name: product; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: product; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.product (product_id, name, description, price, discounted_price, image, image_2, thumbnail, display) FROM stdin;
@@ -952,7 +946,7 @@ COPY public.product (product_id, name, description, price, discounted_price, ima
 
 
 --
--- Data for Name: product_attribute; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: product_attribute; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.product_attribute (product_id, attribute_value_id) FROM stdin;
@@ -2374,7 +2368,7 @@ COPY public.product_attribute (product_id, attribute_value_id) FROM stdin;
 
 
 --
--- Data for Name: product_category; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: product_category; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.product_category (product_id, category_id) FROM stdin;
@@ -2486,7 +2480,7 @@ COPY public.product_category (product_id, category_id) FROM stdin;
 
 
 --
--- Data for Name: review; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: review; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.review (review_id, customer_id, product_id, review, rating, created_on) FROM stdin;
@@ -2494,7 +2488,7 @@ COPY public.review (review_id, customer_id, product_id, review, rating, created_
 
 
 --
--- Data for Name: shipping; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: shipping; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.shipping (shipping_id, shipping_type, shipping_cost, shipping_region_id) FROM stdin;
@@ -2509,7 +2503,7 @@ COPY public.shipping (shipping_id, shipping_type, shipping_cost, shipping_region
 
 
 --
--- Data for Name: shipping_region; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: shipping_region; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.shipping_region (shipping_region_id, shipping_region) FROM stdin;
@@ -2521,7 +2515,7 @@ COPY public.shipping_region (shipping_region_id, shipping_region) FROM stdin;
 
 
 --
--- Data for Name: shopping_cart; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: shopping_cart; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.shopping_cart (item_id, cart_id, product_id, attributes, quantity, buy_now, added_on) FROM stdin;
@@ -2529,7 +2523,7 @@ COPY public.shopping_cart (item_id, cart_id, product_id, attributes, quantity, b
 
 
 --
--- Data for Name: tax; Type: TABLE DATA; Schema: turing; Owner: -
+-- Data for Name: tax; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.tax (tax_id, tax_type, tax_percentage) FROM stdin;
@@ -2560,98 +2554,98 @@ SELECT pg_catalog.setval('public.users_id_seq', 12, true);
 
 
 --
--- Name: attribute_attribute_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: attribute_attribute_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.attribute_attribute_id_seq', 3, true);
 
 
 --
--- Name: attribute_value_attribute_value_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: attribute_value_attribute_value_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.attribute_value_attribute_value_id_seq', 16, true);
 
 
 --
--- Name: audit_audit_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: audit_audit_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.audit_audit_id_seq', 1, true);
 
 
 --
--- Name: category_category_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: category_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.category_category_id_seq', 10, true);
 
 
 --
--- Name: customer_customer_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: customer_customer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.customer_customer_id_seq', 1, true);
 
 
 --
--- Name: department_department_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: department_department_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.department_department_id_seq', 11, true);
 
 
 --
--- Name: order_detail_item_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: order_detail_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.order_detail_item_id_seq', 1, true);
 
 
 --
--- Name: orders_order_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: orders_order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.orders_order_id_seq', 1, true);
 
 
 --
--- Name: product_product_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: product_product_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.product_product_id_seq', 102, true);
 
 
 --
--- Name: review_review_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: review_review_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.review_review_id_seq', 1, true);
 
 
 --
--- Name: shipping_region_shipping_region_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: shipping_region_shipping_region_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.shipping_region_shipping_region_id_seq', 4, true);
 
 
 --
--- Name: shipping_shipping_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: shipping_shipping_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.shipping_shipping_id_seq', 7, true);
 
 
 --
--- Name: shopping_cart_item_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: shopping_cart_item_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.shopping_cart_item_id_seq', 1, true);
 
 
 --
--- Name: tax_tax_id_seq; Type: SEQUENCE SET; Schema: turing; Owner: -
+-- Name: tax_tax_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.tax_tax_id_seq', 2, true);
@@ -2706,7 +2700,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: attribute idx_44491_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: attribute idx_44491_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.attribute
@@ -2714,7 +2708,7 @@ ALTER TABLE ONLY public.attribute
 
 
 --
--- Name: attribute_value idx_44497_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: attribute_value idx_44497_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.attribute_value
@@ -2722,7 +2716,7 @@ ALTER TABLE ONLY public.attribute_value
 
 
 --
--- Name: audit idx_44503_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: audit idx_44503_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.audit
@@ -2730,7 +2724,7 @@ ALTER TABLE ONLY public.audit
 
 
 --
--- Name: category idx_44512_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: category idx_44512_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.category
@@ -2738,7 +2732,7 @@ ALTER TABLE ONLY public.category
 
 
 --
--- Name: customer idx_44521_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: customer idx_44521_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.customer
@@ -2746,7 +2740,7 @@ ALTER TABLE ONLY public.customer
 
 
 --
--- Name: department idx_44531_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: department idx_44531_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.department
@@ -2754,7 +2748,7 @@ ALTER TABLE ONLY public.department
 
 
 --
--- Name: orders idx_44540_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: orders idx_44540_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.orders
@@ -2762,7 +2756,7 @@ ALTER TABLE ONLY public.orders
 
 
 --
--- Name: order_detail idx_44548_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: order_detail idx_44548_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.order_detail
@@ -2770,7 +2764,7 @@ ALTER TABLE ONLY public.order_detail
 
 
 --
--- Name: product idx_44557_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: product idx_44557_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.product
@@ -2778,7 +2772,7 @@ ALTER TABLE ONLY public.product
 
 
 --
--- Name: product_attribute idx_44566_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: product_attribute idx_44566_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.product_attribute
@@ -2786,7 +2780,7 @@ ALTER TABLE ONLY public.product_attribute
 
 
 --
--- Name: product_category idx_44569_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: product_category idx_44569_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.product_category
@@ -2794,7 +2788,7 @@ ALTER TABLE ONLY public.product_category
 
 
 --
--- Name: review idx_44574_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: review idx_44574_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.review
@@ -2802,7 +2796,7 @@ ALTER TABLE ONLY public.review
 
 
 --
--- Name: shipping idx_44583_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: shipping idx_44583_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.shipping
@@ -2810,7 +2804,7 @@ ALTER TABLE ONLY public.shipping
 
 
 --
--- Name: shipping_region idx_44589_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: shipping_region idx_44589_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.shipping_region
@@ -2818,7 +2812,7 @@ ALTER TABLE ONLY public.shipping_region
 
 
 --
--- Name: shopping_cart idx_44595_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: shopping_cart idx_44595_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.shopping_cart
@@ -2826,7 +2820,7 @@ ALTER TABLE ONLY public.shopping_cart
 
 
 --
--- Name: tax idx_44605_primary; Type: CONSTRAINT; Schema: turing; Owner: -
+-- Name: tax idx_44605_primary; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.tax
@@ -2841,98 +2835,98 @@ CREATE INDEX tokens_token_index ON public.tokens USING btree (token);
 
 
 --
--- Name: idx_44497_idx_attribute_value_attribute_id; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44497_idx_attribute_value_attribute_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44497_idx_attribute_value_attribute_id ON public.attribute_value USING btree (attribute_id);
 
 
 --
--- Name: idx_44503_idx_audit_order_id; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44503_idx_audit_order_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44503_idx_audit_order_id ON public.audit USING btree (order_id);
 
 
 --
--- Name: idx_44512_idx_category_department_id; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44512_idx_category_department_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44512_idx_category_department_id ON public.category USING btree (department_id);
 
 
 --
--- Name: idx_44521_idx_customer_email; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44521_idx_customer_email; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX idx_44521_idx_customer_email ON public.customer USING btree (email);
 
 
 --
--- Name: idx_44521_idx_customer_shipping_region_id; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44521_idx_customer_shipping_region_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44521_idx_customer_shipping_region_id ON public.customer USING btree (shipping_region_id);
 
 
 --
--- Name: idx_44540_idx_orders_customer_id; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44540_idx_orders_customer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44540_idx_orders_customer_id ON public.orders USING btree (customer_id);
 
 
 --
--- Name: idx_44540_idx_orders_shipping_id; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44540_idx_orders_shipping_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44540_idx_orders_shipping_id ON public.orders USING btree (shipping_id);
 
 
 --
--- Name: idx_44540_idx_orders_tax_id; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44540_idx_orders_tax_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44540_idx_orders_tax_id ON public.orders USING btree (tax_id);
 
 
 --
--- Name: idx_44548_idx_order_detail_order_id; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44548_idx_order_detail_order_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44548_idx_order_detail_order_id ON public.order_detail USING btree (order_id);
 
 
 --
--- Name: idx_44557_idx_ft_product_name_description; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44557_idx_ft_product_name_description; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44557_idx_ft_product_name_description ON public.product USING btree (name, description);
 
 
 --
--- Name: idx_44574_idx_review_customer_id; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44574_idx_review_customer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44574_idx_review_customer_id ON public.review USING btree (customer_id);
 
 
 --
--- Name: idx_44574_idx_review_product_id; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44574_idx_review_product_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44574_idx_review_product_id ON public.review USING btree (product_id);
 
 
 --
--- Name: idx_44583_idx_shipping_shipping_region_id; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44583_idx_shipping_shipping_region_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44583_idx_shipping_shipping_region_id ON public.shipping USING btree (shipping_region_id);
 
 
 --
--- Name: idx_44595_idx_shopping_cart_cart_id; Type: INDEX; Schema: turing; Owner: -
+-- Name: idx_44595_idx_shopping_cart_cart_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_44595_idx_shopping_cart_cart_id ON public.shopping_cart USING btree (cart_id);

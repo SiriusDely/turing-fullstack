@@ -2,11 +2,13 @@
 const _ = require('lodash');
 const { makeExecutableSchema } = require('graphql-tools');
 
+const CustomersResolver = require('./Resolvers/CustomersResolver');
 const DepartmentCategories = require('./Resolvers/DepartmentCategories');
 const ProductsResolver = require('./Resolvers/ProductsResolver');
 const UsersResolver = require('./Resolvers/UsersResolver');
 
 const resolvers = _.merge(
+  CustomersResolver,
   DepartmentCategories,
   ProductsResolver,
   UsersResolver
@@ -15,6 +17,12 @@ const resolvers = _.merge(
 // Define our schema using the GraphQL schema language
 const typeDefs = `
   type User {
+    id: ID!
+    username: String!
+    email: String!
+  }
+
+  type Customer {
     id: ID!
     username: String!
     email: String!
@@ -61,7 +69,7 @@ const typeDefs = `
   }
 
   type Mutation {
-    register(username: String!, email: String!, password: String!): String
+    register(name: String!, email: String!, password: String!): String
     login(email: String!, password: String!): String
     createUser(username: String!, email: String!, password: String!): User
   }
