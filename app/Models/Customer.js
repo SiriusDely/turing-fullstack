@@ -39,6 +39,10 @@ class Customer extends Model {
   getId({ customer_id }) {
     return customer_id;
   }
+
+  shippingRegion() {
+    return this.belongsTo('App/Models/ShippingRegion');
+  }
 }
 
 module.exports = Customer
