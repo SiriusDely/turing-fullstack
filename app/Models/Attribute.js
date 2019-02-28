@@ -20,6 +20,14 @@ class Attribute extends Model {
     return null;
   }
 
+  static get computed() {
+    return ['id']
+  }
+
+  getId({ attribute_id }) {
+    return attribute_id;
+  }
+
   values() {
     return this.hasMany('App/Models/AttributeValue')
   }

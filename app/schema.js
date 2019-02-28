@@ -40,6 +40,17 @@ const typeDefs = `
     department: Department
   }
 
+  type Attribute {
+    id: ID!
+    name: String!
+    values: [AttributeValue]!
+  }
+
+  type AttributeValue {
+    id: ID!
+    value: String!
+  }
+
   type Product {
     id: ID!
     name: String!
@@ -49,6 +60,11 @@ const typeDefs = `
     image: String
     thumbnail: String
     secondImage: String
+  }
+
+  type ProductDetail {
+    item: Product!
+    attributes: [Attribute]
   }
 
   type Products {
@@ -64,8 +80,9 @@ const typeDefs = `
     allUsers: [User]
     categories(departmentId: ID): [Category]
     departments: [Department]
-    fetchUser(id: Int!): User
+    fetchUser(id: ID): User
     products(departmentId: ID, categoryId: ID, keyword: String, page: Int): Products
+    product(id: ID): ProductDetail
   }
 
   type Mutation {

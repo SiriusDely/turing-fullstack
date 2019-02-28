@@ -4,6 +4,8 @@ const Database = use('Database');
 const Category = use('App/Models/Category');
 const Product = use('App/Models/Product');
 
+const Attribute = use('App/Models/Attribute');
+
 const ProductsResolver = {
   Query: {
     // async allProducts(parent, args, context, info) {
@@ -23,8 +25,17 @@ const ProductsResolver = {
       return products.toJSON();
     },
 
+    async product(_, { id }) {
+      const product = await Product.findOrFail(id);
+      const attributes = await Attribute.query().with('values').fetch();
+
+      return {
+        item: product.toJSON(),
+        attributes: attributes.toJSON()
+      }
+    },
+
     async products(_, { departmentId, categoryId, keyword, page, perPage }) {
-      console.log(departmentId + ' ' + categoryId + ' ' + keyword + ' ' + page + ' ' + perPage);
       page = page ? page : 1;
       perPage = perPage ? perPage : 12;
 

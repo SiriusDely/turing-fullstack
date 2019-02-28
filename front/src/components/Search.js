@@ -23,7 +23,7 @@ class Search extends Component {
     const { keyword } = this.state;
 
     return (
-      <div className="field">
+      <div className="field is-horizontal">
         <div className="field-body">
           <div className="field">
             <div className="control">

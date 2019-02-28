@@ -20,6 +20,14 @@ class AttributeValue extends Model {
     return null;
   }
 
+  static get computed() {
+    return ['id']
+  }
+
+  getId({ attribute_value_id }) {
+    return attribute_value_id;
+  }
+
   attribute() {
     return this.belongsTo('App/Models/Attribute')
   }
