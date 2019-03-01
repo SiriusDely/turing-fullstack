@@ -22,7 +22,7 @@ class OrdersSchema extends Schema {
         table.integer('shipping_id').unsigned().notNullable()
           .references('shipping_region_id').inTable('shipping_region');
         table.integer('tax_id').unsigned().notNullable()
-          .references('tax_id').inTable('customer');
+          .references('tax_id').inTable('tax');
 
         table.timestamps()
       })
