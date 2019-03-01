@@ -6,12 +6,14 @@ const CustomersResolver = require('./Resolvers/CustomersResolver');
 const DepartmentCategories = require('./Resolvers/DepartmentCategories');
 const ProductsResolver = require('./Resolvers/ProductsResolver');
 const UsersResolver = require('./Resolvers/UsersResolver');
+const ShoppingCartsResolver = require('./Resolvers/ShoppingCartsResolver');
 
 const resolvers = _.merge(
   CustomersResolver,
   DepartmentCategories,
   ProductsResolver,
-  UsersResolver
+  UsersResolver,
+  ShoppingCartsResolver
 );
 
 // Define our schema using the GraphQL schema language

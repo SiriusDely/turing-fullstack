@@ -11,9 +11,11 @@
 */
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
-const Factory = use('Factory')
+const Factory = use('Factory');
 
 const User = use('App/Models/User');
+const ShippingRegion = use('App/Models/ShippingRegion');
+const Customer = use('App/Models/Customer');
 const Department = use('App/Models/Department');
 const Category = use('App/Models/Category');
 const Attribute = use('App/Models/Attribute');
@@ -271,9 +273,20 @@ const productCategoryData = [
   { 'product_id': 101, 'category_id': 7 },
 ];
 
+const shippingRegionsData = [
+  { 'shipping_region_id': 1, 'shipping_region': 'Please Select' },
+  { 'shipping_region_id': 2, 'shipping_region': 'US / Canada' },
+  { 'shipping_region_id': 3, 'shipping_region': 'Europe' },
+  { 'shipping_region_id': 4, 'shipping_region': 'Rest of World' }
+];
+
 class DatabaseSeeder {
   async run() {
     await User.create({ 'username': 'sirius', 'email': 'sirius@sirius.com', 'password': 'password' });
+
+    await ShippingRegion.createMany(shippingRegionsData);
+    await Customer.create({ 'name': 'sirius customer', 'email': 'sirius@customer.com', 'password': 'password', 'shipping_region_id': 4 });
+
     await Department.createMany(departmentsData);
     await Category.createMany(categoriesData);
     await Attribute.createMany(attributesData);
