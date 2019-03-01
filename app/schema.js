@@ -75,20 +75,34 @@ const typeDefs = `
     data: [Product]
   }
 
+  type CartItem {
+    id: ID!,
+    altId: String!,
+    attributes: String!,
+    quantity: Int!,
+    orderNow: Boolean!,
+    product: Product,
+  }
+
+  type Cart {
+    items: [CartItem]!
+  }
+
   type Query {
     allProducts: [Product]
     allUsers: [User]
     categories(departmentId: ID): [Category]
     departments: [Department]
     fetchUser(id: ID): User
-    products(departmentId: ID, categoryId: ID, keyword: String, page: Int): Products
     product(id: ID): ProductDetail
+    products(departmentId: ID, categoryId: ID, keyword: String, page: Int): Products
   }
 
   type Mutation {
-    register(name: String!, email: String!, password: String!): String
-    login(email: String!, password: String!): String
+    addToCart(productId: ID!, attributes: String!): Cart
     createUser(username: String!, email: String!, password: String!): User
+    login(email: String!, password: String!): String
+    register(name: String!, email: String!, password: String!): String
   }
 `;
 

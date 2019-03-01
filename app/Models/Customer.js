@@ -43,6 +43,14 @@ class Customer extends Model {
   shippingRegion() {
     return this.belongsTo('App/Models/ShippingRegion');
   }
+
+  shoppingCarts() {
+    return this.hasMany('App/Models/ShoppingCart');
+  }
+
+  orders() {
+    return this.hasMany('App/Models/Order');
+  }
 }
 
 module.exports = Customer
