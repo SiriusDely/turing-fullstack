@@ -21,7 +21,14 @@ class ShoppingCart extends Model {
   }
 
   static get computed() {
-    return ['id, altId, orderNow, addedAt'];
+    return [ 'id', 'altId', 'orderNow', 'addedAt' ];
+  }
+
+  static boot() {
+    super.boot();
+    this.addHook('beforeSave', async (instance) => {
+      instance.cart_id = `${instance.customer_id}-${instance.product_id}`;
+    });
   }
 
   getId({ item_id }) {
@@ -42,6 +49,10 @@ class ShoppingCart extends Model {
 
   customer() {
     return this.belongsTo('App/Models/Customer');
+  }
+
+  product() {
+    return this.belongsTo('App/Models/Product');
   }
 }
 

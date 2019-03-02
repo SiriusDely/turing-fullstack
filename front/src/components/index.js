@@ -1,3 +1,4 @@
+export { default as CartPage } from './CartPage';
 export { default as Login } from './Login';
 export { default as Navigation } from './Navigation';
 export { default as NotFound } from './NotFound';

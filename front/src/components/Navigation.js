@@ -28,8 +28,14 @@ const Navigation = (props) => {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
+              <NavLink className="button is-primary" to="/cart">
+                <span className="icon">
+                  <i className="fas fa-shopping-cart"></i>
+                </span>
+                <span>Cart</span>
+              </NavLink>
               { authToken ? (
-                  <button className="button is-warning" to="/login" onClick={ () => {
+                  <button className="button is-warning" onClick={ () => {
                       const confirm = window.confirm('Logout from Turing?');
                       if (confirm) {
                         localStorage.removeItem(AUTH_TOKEN);

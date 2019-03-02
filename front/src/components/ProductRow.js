@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ProductRow extends React.Component {
   render() {
-    const { name, description, price, reducedPrice, thumbnail, image } = this.props.product;
+    const { id, name, description, price, reducedPrice, thumbnail, image } = this.props.product;
 
     let priceComponent;
     if (reducedPrice && reducedPrice > 0) {
@@ -14,7 +15,7 @@ class ProductRow extends React.Component {
     }
 
     return (
-      <div className="column is-one-quarter">
+      <Link className="column is-one-quarter" to={ `/product/${id}` }>
         <div className="card">
           <div className="card-image">
             <figure className="image is-1by1">
@@ -39,7 +40,7 @@ class ProductRow extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }

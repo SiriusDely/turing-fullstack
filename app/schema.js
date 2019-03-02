@@ -93,6 +93,7 @@ const typeDefs = `
   type Query {
     allProducts: [Product]
     allUsers: [User]
+    cart: [CartItem]
     categories(departmentId: ID): [Category]
     departments: [Department]
     fetchUser(id: ID): User
