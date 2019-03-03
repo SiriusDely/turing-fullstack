@@ -7,13 +7,15 @@ const DepartmentCategories = require('./Resolvers/DepartmentCategories');
 const ProductsResolver = require('./Resolvers/ProductsResolver');
 const UsersResolver = require('./Resolvers/UsersResolver');
 const ShoppingCartsResolver = require('./Resolvers/ShoppingCartsResolver');
+const OrdersResolver = require('./Resolvers/OrdersResolver');
 
 const resolvers = _.merge(
   CustomersResolver,
   DepartmentCategories,
   ProductsResolver,
   UsersResolver,
-  ShoppingCartsResolver
+  ShoppingCartsResolver,
+  OrdersResolver
 );
 
 // Define our schema using the GraphQL schema language
@@ -90,6 +92,23 @@ const typeDefs = `
     items: [CartItem]!
   }
 
+  type OrderItem {
+    id: ID!
+    attributes: String!
+    nameProduct: String!
+    quantity: Int!
+    costUnit: Float!
+    product: Product!
+  }
+
+  type Order {
+    id: ID!
+    amountTotal: Float!
+    status: Int!
+    comments: String
+    items: [OrderItem]!
+  }
+
   type Query {
     allProducts: [Product]
     allUsers: [User]
@@ -106,6 +125,7 @@ const typeDefs = `
     createUser(username: String!, email: String!, password: String!): User
     login(email: String!, password: String!): String
     register(name: String!, email: String!, password: String!): String
+    submitOrder: Order
   }
 `;
 

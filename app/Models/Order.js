@@ -9,19 +9,27 @@ class Order extends Model {
   }
 
   static get createdAtColumn() {
-    return created_on;
+    return 'created_on';
   }
 
   static get updatedAtColumn() {
-    return shipped_on;
+    return null;
   }
 
   static get computed() {
-    return ['id']
+    return ['id', 'shippedAt', 'amountTotal'];
   }
 
   getId({ order_id }) {
     return order_id;
+  }
+
+  getShippedAt({ shipped_on }) {
+    return shipped_on;
+  }
+
+  getAmountTotal({ total_amount }) {
+    return total_amount;
   }
 
   customer() {
@@ -34,6 +42,10 @@ class Order extends Model {
 
   tax() {
     return this.belongsTo('App/Models/Tax');
+  }
+
+  items() {
+    return this.hasMany('App/Models/OrderDetail');
   }
 }
 
