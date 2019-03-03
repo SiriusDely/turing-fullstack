@@ -2,12 +2,12 @@
 const _ = require('lodash');
 const { makeExecutableSchema } = require('graphql-tools');
 
-const CustomersResolver = require('./Resolvers/CustomersResolver');
-const DepartmentCategories = require('./Resolvers/DepartmentCategories');
-const ProductsResolver = require('./Resolvers/ProductsResolver');
-const UsersResolver = require('./Resolvers/UsersResolver');
-const ShoppingCartsResolver = require('./Resolvers/ShoppingCartsResolver');
-const OrdersResolver = require('./Resolvers/OrdersResolver');
+const CustomersResolver = use('App/Resolvers/CustomersResolver');
+const DepartmentCategories = use('App/Resolvers/DepartmentCategories');
+const ProductsResolver = use('App/Resolvers/ProductsResolver');
+const UsersResolver = use('App/Resolvers/UsersResolver');
+const ShoppingCartsResolver = use('./Resolvers/ShoppingCartsResolver');
+const OrdersResolver = use('App/Resolvers/OrdersResolver');
 
 const resolvers = _.merge(
   CustomersResolver,
@@ -125,7 +125,7 @@ const typeDefs = `
     createUser(username: String!, email: String!, password: String!): User
     login(email: String!, password: String!): String
     register(name: String!, email: String!, password: String!): String
-    submitOrder: Order
+    submitOrder(source: String!): Order
   }
 `;
 
