@@ -1,16 +1,8 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { NavLink } from 'react-router-dom';
 
-const DepartmentsQuery = gql`
-  {
-    departments {
-      id,
-      name
-    }
-  }
-`;
+import { DepartmentsQuery } from '../managers/GraphManager';
 
 const DepartmentsDropdown = ({ data }) => (
   <div className="navbar-item has-dropdown is-hoverable">

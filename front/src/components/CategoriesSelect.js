@@ -1,16 +1,8 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { withRouter } from 'react-router';
 
-const CategoriesQuery = gql`
-  query categories($departmentId: ID) {
-    categories(departmentId: $departmentId) {
-      id,
-      name
-    }
-  }
-`;
+import { CategoriesQuery } from '../managers/GraphManager';
 
 const CategoriesSelect = ({ departmentId, categoryId, history }) => (
   <Query query={ CategoriesQuery } variables={ { departmentId } }>

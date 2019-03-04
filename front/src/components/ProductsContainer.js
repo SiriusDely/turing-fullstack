@@ -1,31 +1,10 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { withRouter } from 'react-router';
 
+import { ProductsQuery } from '../managers/GraphManager';
 import Pagination from './Pagination';
 import ProductsList from './ProductsList';
-
-const ProductsQuery = gql`
-  query products($departmentId: ID, $categoryId: ID, $keyword: String, $page: Int){
-    products(departmentId: $departmentId, categoryId: $categoryId, keyword: $keyword, page: $page) {
-      data {
-        id,
-        name,
-        description,
-        price,
-        reducedPrice,
-        image,
-        thumbnail,
-        secondImage
-      },
-      total,
-      page,
-      perPage,
-      lastPage
-    }
-  }
-`;
 
 class ProductsContainer extends React.Component {
 

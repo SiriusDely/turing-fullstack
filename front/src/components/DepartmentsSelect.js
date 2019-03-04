@@ -3,14 +3,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { withRouter } from 'react-router';
 
-const DepartmentsQuery = gql`
-  {
-    departments {
-      id,
-      name
-    }
-  }
-`;
+import { DepartmentsQuery } from '../managers/GraphManager';
 
 class DepartmentsSelect extends React.Component {
   constructor(props) {

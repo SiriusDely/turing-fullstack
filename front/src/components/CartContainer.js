@@ -1,30 +1,11 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import { CardElement, injectStripe } from 'react-stripe-elements';
 
-const CartQuery = gql`
-{
-  cart {
-    id,
-    altId,
-    attributes,
-    quantity,
-    orderNow,
-    product {
-      id,
-      name,
-      description,
-      price,
-      reducedPrice,
-      thumbnail
-    }
-  }
-}
-`;
+import { CartQuery } from '../managers/GraphManager';
 
 class CartContainer extends Component {
   constructor(props) {
