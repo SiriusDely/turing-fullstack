@@ -1,37 +1,47 @@
 import React, { Component } from 'react';
 
-import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import { withRouter } from 'react-router';
 
-const ProductQuery = gql`
-  query product($id: ID){
-    product(id: $id) {
-      item {
-        id,
-        name,
-        description,
-        price,
-        reducedPrice,
-        image,
-        thumbnail,
-        secondImage
-      },
-      attributes {
-        id,
-        name,
-        values {
-          id,
+import { ProductQuery, AddToCart } from '../managers/GraphManager';
+
+class ProductDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.attributes = [];
+    this.state = {
+      addingToCart: false,
+      addedToCart: false
+    };
+  }
+
+  _handleChange = e => {
+    const index = e.nativeEvent.target.selectedIndex;
+    const value = e.nativeEvent.target[index].text;
+    for (let attribute of this.attributes) {
+      if (attribute.name === e.target.name) {
+        attribute.value = {
+          id: e.target.value,
           value
         }
       }
     }
   }
-`;
 
+  _handleMutationError = err => {
+    this.setState({
+      addingToCart: false,
+      addedToCart: false
+    });
+  }
 
+  _handleMutationCompleted = _ => {
+    this.setState({
+      addingToCart: false,
+      addedToCart: true
+    });
+  }
 
-class ProductDetails extends Component {
   render() {
     const { id } = this.props.match.params;
 
@@ -47,10 +57,27 @@ class ProductDetails extends Component {
               const productDetails = data && data.product;
               const product = productDetails && productDetails.item;
               const attributes = productDetails && productDetails.attributes;
+
+              if (attributes) {
+                const defaultAttributes = [];
+                for (let attribute of attributes) {
+                  const defaultAttribute = {
+                    id: attribute.id,
+                    name: attribute.name
+                  };
+                  defaultAttribute.value = {
+                    id: attribute.values[0].id,
+                    value: attribute.values[0].value
+                  };
+                  defaultAttributes.push(defaultAttribute);
+                }
+                this.attributes = defaultAttributes;
+              }
+
               if (!product) {
                 component = <div>Loading</div>;
               } else {
-                const { name, description, price, reducedPrice,
+                const { id, name, description, price, reducedPrice,
                         image, secondImage } = product ? product : null;
 
                 let priceComponent;
@@ -84,7 +111,8 @@ class ProductDetails extends Component {
                               <div className="field">
                                 <div className="control">
                                   <div className="select">
-                                    <select>
+                                    <select name={ attribute.name }
+                                            onChange={ this._handleChange }>
                                       { attribute.values.map(value => (
                                         <option key={ value.id } value={ value.id }>
                                           { value.value }
@@ -105,11 +133,30 @@ class ProductDetails extends Component {
                           <img src={ `/images/products/${secondImage}` } alt={ secondImage } />
                         </figure>
                       </div>
-                      <div className="column">
-                        <button className="button is-success is-fullwidth">
-                          Add to Cart
-                        </button>
-                      </div>
+                      <Mutation mutation={ AddToCart }
+                                onError={ err => this._handleMutationError(err) }
+                                onCompleted={ this._handleMutationCompleted }>
+                        { mutation => (
+                          <div className="column">
+                            <button className={ this.state.addingToCart ? "button is-success is-fullwidth is-loading" : "button is-success is-fullwidth" }
+                                    disabled={ this.state.addingToCart || this.state.addedToCart }
+                                    onClick={ e => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        this.setState({
+                                          addingToCart: true,
+                                          addedToCart: false
+                                        });
+                                        mutation({ variables: {
+                                          productId: id,
+                                          attributes: JSON.stringify(this.attributes)
+                                        } });
+                                    } }>
+                              { this.state.addedToCart ? 'Added to Cart' : 'Add To Cart' }
+                            </button>
+                          </div>
+                        ) }
+                      </Mutation>
                     </div>
                   </div>
                 );

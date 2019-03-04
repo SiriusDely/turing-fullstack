@@ -1,5 +1,4 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { withRouter } from 'react-router';
 
@@ -30,6 +29,7 @@ class DepartmentsSelect extends React.Component {
     return (
       <Query query={ DepartmentsQuery }>
         { ({ data }) => (
+          /* eslint-disable-next-line */
           <select defaultValue={ departmentId && !isNaN(departmentId) ? departmentId : 0 } onChange={ this._handleSelectOptionsOnChange }>
             <option value={ 0 }>All Departments</option>
             { data && data.departments && data.departments.map(department => (

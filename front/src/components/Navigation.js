@@ -13,6 +13,7 @@ const Navigation = (props) => {
       <div className="navbar-brand">
         <NavLink className="navbar-item" exact to="/"
                  activeClassName="is-active">TURING</NavLink>
+        { /* eslint-disable-next-line */}
         <a role="button" className="navbar-burger burger" aria-label="menu"
            aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>

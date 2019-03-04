@@ -81,6 +81,19 @@ class CartContainer extends Component {
 
                               this.total.quantity += item.quantity;
                               this.total.amount += amount;
+                              let attributesJson = [];
+                              try {
+                                attributesJson = JSON.parse(item.attributes);
+                              } catch(e) {
+                                // console.error(e);
+                              }
+                              let attributeNames = attributesJson[0] ? attributesJson[0].name : '';
+                              let attributeValues = attributesJson[0] ? attributesJson[0].value.value : '';
+                              for (let i=1; i < attributesJson.length; i++) {
+                                const attributeJson = attributesJson[i];
+                                attributeNames += '/' + attributeJson.name;
+                                attributeValues += '/' + attributeJson.value.value;
+                              }
 
                               return (
                                 <tr key={ item.id }>
@@ -91,7 +104,7 @@ class CartContainer extends Component {
                                   <td><Link to={ `/product/${product.id}` }>
                                     { product.name }
                                   </Link></td>
-                                  <td>{ item.attributes }</td>
+                                  <td>{ `${attributeNames}: ${attributeValues}` }</td>
                                   <td>{ item.quantity }</td>
                                   <td>${ amount.toFixed(2) }</td>
                                 </tr>
