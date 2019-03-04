@@ -14,10 +14,11 @@ const ShoppingCartsResolver = {
             .with('product')
             .where('customer_id', customer.customer_id)
             .fetch();
+      /*
       for (let shoppingCart of shoppingCarts.rows) {
         await shoppingCart.load('product');
       }
-
+      */
       Logger.info('ShoppingCartsResolver.Query.cart.shoppingCarts:', shoppingCarts);
 
       return shoppingCarts.toJSON();
@@ -52,10 +53,11 @@ const ShoppingCartsResolver = {
             .with('product')
             .where('customer_id', customer.customer_id)
             .fetch();
+      /*
       for (let shoppingCart of shoppingCarts.rows) {
         await shoppingCart.load('product');
       }
-
+      */
       return { items: shoppingCarts.toJSON() };
     }
   }
