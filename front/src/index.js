@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import ReactGA from 'react-ga';
 import ApolloClient from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createHttpLink } from 'apollo-link-http';
@@ -14,6 +15,9 @@ import './index.css';
 
 import App from './App';
 import { AUTH_TOKEN } from './constants';
+
+ReactGA.initialize('UA-133436720-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const httpLink = createHttpLink({
   uri: '/graphql'
