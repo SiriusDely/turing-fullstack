@@ -1,5 +1,6 @@
 'use strict';
 
+const Logger = use('Logger');
 const ShoppingCart = use('App/Models/ShoppingCart');
 
 const ShoppingCartsResolver = {
@@ -16,6 +17,8 @@ const ShoppingCartsResolver = {
       for (let shoppingCart of shoppingCarts.rows) {
         await shoppingCart.load('product');
       }
+
+      Logger.info('ShoppingCartsResolver.Query.cart.shoppingCarts:', shoppingCarts);
 
       return shoppingCarts.toJSON();
     }

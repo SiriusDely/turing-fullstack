@@ -50,6 +50,7 @@ class CartContainer extends Component {
     return (
       <Query query={ CartQuery }>
         { ({ data }) => {
+            console.log('CartContainer.render.data:', data);
             const cart = data && data.cart;
 
             let component;
