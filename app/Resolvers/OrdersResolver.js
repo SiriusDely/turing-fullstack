@@ -53,6 +53,12 @@ const OrdersResolver = {
         tax_id: 1
       })
       await order.items().createMany(orderDetails);
+
+      await ShoppingCart.query()
+        .with('product')
+        .where('customer_id', customer.customer_id)
+        .delete();
+
       transaction.commit();
 
       await order.reload();
@@ -73,7 +79,7 @@ const OrdersResolver = {
           order: orderJson
         }, (message) => {
           message.subject('Order Confirmation')
-          message.from('no-reply@turing.com')
+          message.from('no-reply@turing-fullstack.com')
           message.to(Env.get('MAIL_ADDRESS', customer.email))
         })
       } catch(e) {

@@ -6,7 +6,7 @@ import CartContainer from './CartContainer';
 class CartPage extends Component {
   render() {
     return (
-      <StripeProvider apiKey={ process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY || 'STRIPE_PUBLISHABLE_KEY' }>
+      <StripeProvider apiKey={ process.env.REACT_APP_STRIPE_API_KEY || 'STRIPE_API_KEY' }>
         <Elements>
           <CartContainer />
         </Elements>

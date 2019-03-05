@@ -153,6 +153,33 @@ const ProductsQuery = gql`
   }
 `;
 
+const SubmitOrder = gql`
+  mutation submitOrder($source: String!) {
+    submitOrder(source: $source) {
+      id,
+      amountTotal,
+      status,
+      comments,
+      items {
+        id,
+        attributes,
+        nameProduct,
+        quantity,
+        costUnit,
+        product {
+          id,
+          name,
+          description,
+          price,
+          reducedPrice,
+          thumbnail
+        }
+      }
+    }
+  }
+`;
+
 export { CartQuery, CategoriesQuery, DepartmentsQuery
          , LoginMutation, RegisterMutation,
-         ProductQuery, ProductsQuery, AddToCart };
+         ProductQuery, ProductsQuery,
+         AddToCart, SubmitOrder };

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
-import axios from 'axios';
-import { Query } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import { CardElement, injectStripe } from 'react-stripe-elements';
 
-import { CartQuery } from '../managers/GraphManager';
+import { CartQuery, SubmitOrder } from '../managers/GraphManager';
 
 class CartContainer extends Component {
   constructor(props) {
@@ -14,34 +13,40 @@ class CartContainer extends Component {
       quantity: 0,
       amount: 0
     };
+    this.state = {
+      ordering: false,
+      ordered: false
+    };
   }
 
-  handleClick = e => {
+  _handleMutationError = err => {
+    this.setState({
+      ordering: false,
+      ordered: false
+    });
+  }
+
+  _handleMutationCompleted = _ => {
+    this.setState({
+      ordering: false,
+      ordered: true
+    });
+  }
+
+  _handleClick = e => {
     e.preventDefault();
     e.stopPropagation();
-    this.props.stripe.createToken().then(({token}) => {
-      const price = this.total.amount;
-      axios.post(`https://api.stripe.com/v1/charges`,
-                 {
-                   source: token.id,
-                   amount: price,
-                   currency: 'usd'
-                 },
-                 {
-                   headers: {
-                     'Authorization': `Basic ${process.env.REACT_APP_STRIPE_API_KEY || 'STRIPE_API_KEY'}:`,
-                   }
-                 })
-           .then(resp => {
-             // this.setState({fetching: false})
-             alert(`Thank you for your purchase! You card has been charged with: ${(resp.data.amount / 100).toLocaleString('en-US', {style: 'currency', currency: 'usd'})}`)
-           })
-           .catch(error => {
-             // this.setState({fetching: false})
-             console.log('error:', error)
-           })
+    this.props.stripe.createToken().then(({ token }) => {
+      this.setState({
+        ordering: true,
+        ordered: false
+      })
+      this.mutation({ variables: { source: token.id } });
     }).catch(error => {
-      // this.setState({fetching: false})
+      this.setState({
+        ordering: false,
+        ordered: false
+      })
       console.log(error)
     })
   }
@@ -50,7 +55,7 @@ class CartContainer extends Component {
     return (
       <Query query={ CartQuery }>
         { ({ data }) => {
-            console.log('CartContainer.render.data:', data);
+            // console.log('CartContainer.render.data:', data);
             const cart = data && data.cart;
 
             let component;
@@ -135,15 +140,25 @@ class CartContainer extends Component {
                   <br />
                   <div className="columns">
                     <div className='column is-1'></div>
-                    <div className='column'>
-                      <p className="title is-3">Payment</p>
-                      <CardElement />
-                      <br />
-                      <button className="button is-danger is-fullwidth"
-                              onClick={ this.handleClick }>
-                        Proceed to Checkout
-                      </button>
-                    </div>
+                    <Mutation mutation={ SubmitOrder }
+                              onError={ err => this._handleMutationError(err) }
+                              onCompleted={ this._handleMutationCompleted }>
+                      { mutation => {
+                          this.mutation = mutation;
+                          return (
+                            <div className='column'>
+                              <p className="title is-3">Payment</p>
+                              <CardElement />
+                              <br />
+                              <button className={ this.state.ordering ? "button is-danger is-fullwidth is-loading" : "button is-danger is-fullwidth" }
+                                      disabled={ this.state.ordering || this.state.ordered }
+                                      onClick={ this._handleClick }>
+                                { this.state.ordered ? 'Ordered Successfully' : 'Proceed to Checkout' }
+                              </button>
+                            </div>
+                          );
+                      } }
+                    </Mutation>
                     <div className='column is-1'></div>
                   </div>
                 </>
