@@ -19,12 +19,13 @@ The project's structure is loosely based on [a Heroku blog post](https://blog.he
 Todos left:
 - Email registration confirmation
 - Test driven development
-- Separate Login (Authentication & Authorization Models) for Customers vs. Users (Admin)
-- [Facebook Login](https://developers.facebook.com/docs/facebook-login/web)
+- ~Separate Login (Authentication & Authorization Models) for Customers vs. Users (Admin)~
+- ~[Facebook Login](https://developers.facebook.com/docs/facebook-login/web)~
 - Updating product images, hosting using [Cloudinary](https://elements.heroku.com/addons/cloudinary) or [AWS S3](https://aws.amazon.com/s3)
-- Shopping cart
-- Checkout process, including payment gateway integration
-- Email order confirmation
+- ~Shopping cart~
+- ~Checkout process, including payment gateway integration~
+- ~Email order confirmation~
+- Background-jobs & Queue using [Bee Queue](https://github.com/bee-queue/bee-queue)
 - Query and response caching with Redis
 - Full-text search with Elasticsearch
 
