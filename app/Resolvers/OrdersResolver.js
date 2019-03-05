@@ -1,6 +1,9 @@
 'use strict';
 
 const Database = use('Database');
+const Env = use('Env');
+const Logger = use('Logger');
+const Mail = use('Mail');
 const Order = use('App/Models/Order');
 const ShoppingCart = use('App/Models/ShoppingCart');
 const Stripe = use('Turing/Stripe');
@@ -16,11 +19,11 @@ const OrdersResolver = {
             .with('product')
             .where('customer_id', customer.customer_id)
             .fetch();
-
+      /*
       for (let shoppingCart of shoppingCarts.rows) {
         await shoppingCart.load('product');
       }
-
+      */
       let totalAmount = 0;
       const orderDetails = [];
       const shoppingCartsJson = shoppingCarts.toJSON();
@@ -46,39 +49,17 @@ const OrdersResolver = {
         customer_id: customer.customer_id,
         total_amount: totalAmount,
         created_on: new Date().toISOString(),
-        shipping_id: customer.shipping_region_id
+        shipping_id: customer.shipping_region_id,
+        tax_id: 1
       })
       await order.items().createMany(orderDetails);
       transaction.commit();
 
       await order.reload();
       await order.load('items.product');
+      const orderJson = order.toJSON();
 
       try {
-        /*
-        const stripeOrder = await Stripe.orders.create({
-          currency: 'usd',
-          items: [{
-            type: 'sku',
-            parent: 'sku_EdCxCkzwTn1qH3',
-            quantity: 1
-          }],
-          email: customer.email,
-          shipping: {
-            name: 'Jenny Rosen',
-            address: {
-              line1: '1234 Main Street',
-              city: 'San Francisco',
-              state: 'CA',
-              country: 'US',
-              postal_code: '94111'
-            }
-          }
-        });
-        // console.log('stripeOrder:', stripeOrder);
-
-        await Stripe.orders.pay(stripeOrder.id, { source });
-        */
         const charge = await Stripe.charges.create({
           amount: totalAmount * 100,
           currency: 'usd',
@@ -86,12 +67,20 @@ const OrdersResolver = {
           source,
           receipt_email: customer.email
         });
-        // console.log('charge:', charge);
+
+        await Mail.send('email.order-confirmation', {
+          username: customer.name,
+          order: orderJson
+        }, (message) => {
+          message.subject('Order Confirmation')
+          message.from('no-reply@turing.com')
+          message.to(Env.get('MAIL_ADDRESS', customer.email))
+        })
       } catch(e) {
-        console.error('stripe error:', e);
+        Logger.error('stripe error:', e);
       }
 
-      return order.toJSON();
+      return orderJson;
     }
   }
 };

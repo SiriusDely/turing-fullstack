@@ -1,0 +1,27 @@
+<h2>Hi {{ username }}, we have received the payment for your order.</h2>
+<br />
+<p>Total Amount: ${{ order.amountTotal }} </p>
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    @each(item in order.items)
+      <tr>
+        <td>
+        </td>
+        <td>
+          {{ item.product.name }}
+        </td>
+        <td>{{ item.quantity }}</td>
+        <td>${{ (item.quantity * item.costUnit) }}</td>
+      </tr>
+    @endeach
+  </tbody>
+</table>
+<br />
+<h2>Thank you.</h2>

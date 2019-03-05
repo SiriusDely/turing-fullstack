@@ -18,9 +18,8 @@ const ShoppingCartsResolver = {
       for (let shoppingCart of shoppingCarts.rows) {
         await shoppingCart.load('product');
       }
-      */
       Logger.info('ShoppingCartsResolver.Query.cart.shoppingCarts:', shoppingCarts);
-
+      */
       return shoppingCarts.toJSON();
     }
   },
