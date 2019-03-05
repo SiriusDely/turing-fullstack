@@ -147,6 +147,16 @@ class Login extends Component {
                   </form>
                 ) }
               </Mutation>
+              <a className="button is-link is-fullwidth"
+                 href={ `${process.env.REACT_APP_SERVER_URL || ''}/login/facebook` }>
+                <span className="icon">
+                  <i className="fab fa-facebook"></i>
+                </span>
+                <span>
+                  { login ? 'Login with Facebook' : 'Register with Facebook' }
+                </span>
+              </a>
+              <br />
               <button className="button is-fullwidth"
                       onClick={ e => {
                           e.preventDefault();
