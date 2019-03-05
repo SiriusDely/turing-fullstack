@@ -23,7 +23,7 @@ Todos left:
 - ~[Facebook Login](https://developers.facebook.com/docs/facebook-login/web)~
 - Updating product images, hosting using [Cloudinary](https://elements.heroku.com/addons/cloudinary) or [AWS S3](https://aws.amazon.com/s3)
 - ~Shopping cart~
-- ~Checkout process, including payment gateway integration~
+- ~Checkout process, including [Stripe](https://stripe.com) payment integration~
 - ~Email order confirmation~
 - Background-jobs & Queue using [Bee Queue](https://github.com/bee-queue/bee-queue)
 - Query and response caching with Redis
