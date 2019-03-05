@@ -67,7 +67,7 @@ const OrdersResolver = {
 
       try {
         const charge = await Stripe.charges.create({
-          amount: totalAmount * 100,
+          amount: Math.round(totalAmount * 100),
           currency: 'usd',
           description: customer.name,
           source,
