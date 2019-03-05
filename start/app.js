@@ -22,6 +22,7 @@ const providers = [
   '@adonisjs/session/providers/SessionProvider',
   '@adonisjs/auth/providers/AuthProvider',
   '@adonisjs/validator/providers/ValidatorProvider',
+  '@adonisjs/ally/providers/AllyProvider',
   '@adonisjs/mail/providers/MailProvider',
   'adonis-apollo-server/providers/ApolloServerProvider',
   path.join(__dirname, '..', 'providers', 'StripeProvider')

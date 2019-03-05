@@ -23,6 +23,9 @@ const schema = require('../app/schema');
 
 Route.on('/').render('welcome');
 
+Route.get('/login/facebook', 'LoginController.redirectFB');
+Route.get('/authenticated/facebook', 'LoginController.callbackFB');
+
 Route.get('/api', () => {
   return { greeting: 'Hello world in JSON' };
 });

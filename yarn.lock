@@ -22,6 +22,17 @@
     prompt-list "^3.2.0"
     prompt-password "^1.2.0"
 
+"@adonisjs/ally@2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@adonisjs/ally/-/ally-2.1.2.tgz#945a07c4c5336602311b984fef5f3f76dbca3cb5"
+  dependencies:
+    "@adonisjs/generic-exceptions" "^2.0.1"
+    debug "^4.0.1"
+    got "8.3.2"
+    lodash "^4.17.11"
+    oauth "^0.9.15"
+    uuid "^3.3.2"
+
 "@adonisjs/auth@^3.0.7":
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/@adonisjs/auth/-/auth-3.0.7.tgz#e18ed04b003acbb24ad0f4a86ab82cecc6fca5b1"
@@ -1741,6 +1752,28 @@ got@8.3.0:
     url-parse-lax "^3.0.0"
     url-to-options "^1.0.1"
 
+got@8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/got/-/got-8.3.2.tgz#1d23f64390e97f776cac52e5b936e5f514d2e937"
+  dependencies:
+    "@sindresorhus/is" "^0.7.0"
+    cacheable-request "^2.1.1"
+    decompress-response "^3.3.0"
+    duplexer3 "^0.1.4"
+    get-stream "^3.0.0"
+    into-stream "^3.1.0"
+    is-retry-allowed "^1.1.0"
+    isurl "^1.0.0-alpha5"
+    lowercase-keys "^1.0.0"
+    mimic-response "^1.0.0"
+    p-cancelable "^0.4.0"
+    p-timeout "^2.0.1"
+    pify "^3.0.0"
+    safe-buffer "^5.1.1"
+    timed-out "^4.0.1"
+    url-parse-lax "^3.0.0"
+    url-to-options "^1.0.1"
+
 graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.15"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
@@ -2771,6 +2804,10 @@ number-is-nan@^1.0.0:
 oauth-sign@~0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
+
+oauth@^0.9.15:
+  version "0.9.15"
+  resolved "https://registry.yarnpkg.com/oauth/-/oauth-0.9.15.tgz#bd1fefaf686c96b75475aed5196412ff60cfb9c1"
 
 object-assign@^4.1.0:
   version "4.1.1"
