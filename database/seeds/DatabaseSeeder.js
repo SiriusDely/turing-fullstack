@@ -21,6 +21,7 @@ const Category = use('App/Models/Category');
 const Attribute = use('App/Models/Attribute');
 const AttributeValue = use('App/Models/AttributeValue');
 const Product = use('App/Models/Product');
+const Tax = use('App/Models/Tax');
 
 const Database = use('Database');
 
@@ -280,6 +281,12 @@ const shippingRegionsData = [
   { 'shipping_region_id': 4, 'shipping_region': 'Rest of World' }
 ];
 
+const taxesData = [
+
+  { 'tax_id': 1, 'tax_type': 'Sales Tax at 8.5%', 'tax_percentage': 8.50 },
+  { 'tax_id': 2, 'tax_type': 'No Tax', 'tax_percentage': 0.00 }
+];
+
 class DatabaseSeeder {
   async run() {
     await User.create({ 'username': 'sirius', 'email': 'sirius@sirius.com', 'password': 'password' });
@@ -293,6 +300,8 @@ class DatabaseSeeder {
     await AttributeValue.createMany(valuesData);
     await Product.createMany(productsData);
     await Database.from('product_category').insert(productCategoryData);
+
+    await Tax.createMany(taxesData);
   }
 }
 

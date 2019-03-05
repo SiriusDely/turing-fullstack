@@ -20,7 +20,7 @@ class CartContainer extends Component {
   }
 
   _handleMutationError = err => {
-    console.log('CartContainer._handleMutationError:', err)
+    // console.log('CartContainer._handleMutationError:', err)
     this.setState({
       ordering: false,
       ordered: false
@@ -48,7 +48,7 @@ class CartContainer extends Component {
         ordering: false,
         ordered: false
       })
-      console.log('CartContainer._handleClick.createToken.error:', error)
+      // console.log('CartContainer._handleClick.createToken.error:', error)
     })
   }
 
